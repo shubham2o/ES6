@@ -41,6 +41,7 @@ ReferenceError : functionScoped is not defined */
 // Hoisting
 console.log(`
 4>----->-----> Hoisting <-----<-----<`);
+
 var inner = "Global-Inner";
 
 if (true) {
