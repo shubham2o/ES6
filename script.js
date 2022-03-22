@@ -138,3 +138,16 @@ const person = {
 
 person.age = 30;
 console.log(person.age);
+
+
+// Transpiler
+// ES6
+let n = [1, 2, 3];
+let squares = n.map((e) => e * e);
+
+// Transpiled to compatible JavaScript code
+"use strict";
+var n2 = [1, 2, 3];
+var squares2 = n.map(function (e) {
+    return e * e;
+});
