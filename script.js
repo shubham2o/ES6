@@ -1,6 +1,8 @@
 /* Var, Let and Const in JavaScript
+Var in javascript
 For loop is block scoped */
-console.log(`
+console.log(`Var in JavaScript 
+
 1>----->-----> For loop is block scoped <-----<-----<`);
 
 for (var i = 0; i < 10; i++) {
@@ -8,6 +10,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 console.log(iAmInside);
+
 
 // Block scope
 console.log(`
@@ -18,6 +21,7 @@ if (true) {
 }
 
 console.log(inside);
+
 
 // Function scoped
 console.log(`
@@ -32,6 +36,7 @@ myFunc();
 /* console.log(functionScoped); 
 This will return ReferenceError as an output which says
 ReferenceError : functionScoped is not defined */
+
 
 // Hoisting
 console.log(`
@@ -68,3 +73,67 @@ function getVal(condition) {
 
 console.log(getVal(true));
 console.log(getVal(false));
+
+
+// let in javascript
+console.log(`
+Let in JavaScript
+
+1>----->-----> Accessible inside the given scope only <-----<-----<`);
+
+function getValue1(condition) {
+    if (condition) {
+        let value = "Blue";
+        return value;
+    } else {
+        return value;
+    }
+}
+
+console.log(getValue1(true));
+/* console.log(getValue1(false));
+This will return ReferenceError as an output which says
+ReferenceError : value is not defined */
+
+let a = 10;
+if (a == 10) {
+    let a = 35;
+    console.log(a);
+}
+console.log(a);
+
+
+// Const in javascript
+console.log(`
+Const in JavaScript
+
+`);
+
+const abc = "XYZ";
+// const XYZ; SyntaxError: Missing initializer in a const declaration 
+// let abc; SyntaxError : Identifier 'abc' has already been declared
+// abc = pqr; TypeError : Assignment to constant variable.
+
+
+// Block scoped
+console.log(`1>----->-----> const is also blocked scoped <-----<-----<`);
+
+if (true) {
+    const b = "I am inside";
+    console.log(b); // I am inside
+}
+
+// console.log(b); ReferenceError: b is not defined
+
+
+// The value a constant holds may be modified if it is an object.
+console.log(`
+2>----->-----> The value a constant holds may be modified if it is an object. <-----<-----<`);
+
+const person = {
+    name: "Shubham",
+    age: 25,
+}
+
+person.age = 30;
+console.log(person.age);
