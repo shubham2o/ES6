@@ -1,68 +1,70 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Learner's Bucket</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!-- Var, Let and Const in JavaScript -->
-        <h2>Var, Let and Const in JavaScript</h2>
-            <!-- Var in javascript -->
-        <p>• Var in javascript are function scoped, which means they are accessible outside the block scope 
-            even though we have declared them inside it.</p>
-            <!-- Hoisting -->
-        <p>• This happends because of Hoisting.</p>
-        <p>var are treated as if they are at the top of the function (or global scope) regardless of where 
-            the actual declaration occurs, this is called hoisting.</p>
-            <!-- Let in javascript -->
-        <p>• Let are declared same as var but it limits the variable scope to the given block. That is why 
-            we should declare at the top of the block so that is accessible throughout the block and its 
-            sub-blocks.</p>
-            <!-- Const in javascript -->
-        <p>• Like let const is also block scoped. But it differs from the fact that their variable cannot 
-            be redeclared or change by re-assigning the value. The value remains Constant.</p>
-        <hr>
 
-        <!-- Transpiler -->
-        <h2>Transpiler</h2>
-        <p>• If you want old or older versions of browsers to understand new features, one must use a 
-            transpiler.</p>
-        <p>• A transpiler converts the new JavaScript code to a browser compatible javascript.</p>
-        <p>• That is why babel is created.</p>
-        <p>• Babel is a JavaScript compiler which converts the new Javascript to a browser compatible 
-            Javascript.</p>
-        <hr>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Learner's Bucket</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
 
-        <!-- How to use Babel? -->
-        <h2>How to use Babel?</h2>
-        <p>• Copy the Babel cdn from babel cdn website and import this in your website.</p>
-        <p>• Now after importing the cdn, we need to tell the browser that the current script which we 
-            are writing is in Babel.</p>
-        <p>• We can do that by setting the type of the script tag.</p>
-        <!-- <script type = "text/babel">
+<body>
+    <!-- Var, Let and Const in JavaScript -->
+    <h2>Var, Let and Const in JavaScript</h2>
+    <!-- Var in javascript -->
+    <p>• Var in javascript are function scoped, which means they are accessible outside the block scope
+        even though we have declared them inside it.</p>
+    <!-- Hoisting -->
+    <p>• This happends because of Hoisting.</p>
+    <p>var are treated as if they are at the top of the function (or global scope) regardless of where
+        the actual declaration occurs, this is called hoisting.</p>
+    <!-- Let in javascript -->
+    <p>• Let are declared same as var but it limits the variable scope to the given block. That is why
+        we should declare at the top of the block so that is accessible throughout the block and its
+        sub-blocks.</p>
+    <!-- Const in javascript -->
+    <p>• Like let const is also block scoped. But it differs from the fact that their variable cannot
+        be redeclared or change by re-assigning the value. The value remains Constant.</p>
+    <hr>
+
+    <!-- Transpiler -->
+    <h2>Transpiler</h2>
+    <p>• If you want old or older versions of browsers to understand new features, one must use a
+        transpiler.</p>
+    <p>• A transpiler converts the new JavaScript code to a browser compatible javascript.</p>
+    <p>• That is why babel is created.</p>
+    <p>• Babel is a JavaScript compiler which converts the new Javascript to a browser compatible
+        Javascript.</p>
+    <hr>
+
+    <!-- How to use Babel? -->
+    <h2>How to use Babel?</h2>
+    <p>• Copy the Babel cdn from babel cdn website and import this in your website.</p>
+    <p>• Now after importing the cdn, we need to tell the browser that the current script which we
+        are writing is in Babel.</p>
+    <p>• We can do that by setting the type of the script tag.</p>
+    <!-- <script type = "text/babel">
             let n = [1, 2, 3];
             let squares = n.map((e) => e * e);
         </script> -->
-        <hr>
+    <hr>
 
-        <h2>What is the difference between Polyfilling and Transpiling?</h2>
-        <p>• A polyfill tries to emulate specific methods, so you cna use them as if they were already 
-            supported by the browser (or node engine), on the other hand, A transpiler will modify your 
-            code and replace code by other code that does the same, which can then be executed in old 
-            browsers.</p>
-        <p>• So you can use a polyfill if your target browser did not implement the feature you need 
-            to use. A transpiler, on the other hand, is more complex and will let you use the new 
-            language syntax and transforming your source code.</p>
-        <p>• In short, a polyfill will change the code in your target browser if some of the new features 
-            you wanted to add are not working.</p>
-        <p>• And transpiler will let us use the new code of the new features which we wanted to add, 
-            but will transform or convert it into the new source code first.</p>
-        <hr>
+    <h2>What is the difference between Polyfilling and Transpiling?</h2>
+    <p>• A polyfill tries to emulate specific methods, so you cna use them as if they were already
+        supported by the browser (or node engine), on the other hand, A transpiler will modify your
+        code and replace code by other code that does the same, which can then be executed in old
+        browsers.</p>
+    <p>• So you can use a polyfill if your target browser did not implement the feature you need
+        to use. A transpiler, on the other hand, is more complex and will let you use the new
+        language syntax and transforming your source code.</p>
+    <p>• In short, a polyfill will change the code in your target browser if some of the new features
+        you wanted to add are not working.</p>
+    <p>• And transpiler will let us use the new code of the new features which we wanted to add,
+        but will transform or convert it into the new source code first.</p>
+    <hr>
 
-        <script src="script.js" async defer></script>
-    </body>
+    <script src="script.js" async defer></script>
+</body>
+
 </html>
