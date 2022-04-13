@@ -28,6 +28,18 @@
         be redeclared or change by re-assigning the value. The value remains Constant.</p>
     <hr>
 
+    <!-- What is Temporal Dead Zone ? -->
+    <h2>What is Temporal Dead Zone?</h2>
+    <p>• Temporal Dead Zone is the time since when the let variable was hoisted and till it is intialized some value,
+        the time between that is known as the Temporal Dead Zone.</p>
+    <p>• So whenever you try to access a variable inside the temporal dead zone, it gives you a ReferenceError.</p>
+    <p>• When the variable is inside this temporal dead zone you cannot access them and they can only be accessed once
+        some value is initialized to them.</p>
+    <p>• The let and const variables are not accessible before they are initialized with some value, and the phase
+        between the starting of the execution of block in which the let or const variable is declared till that variable
+        is being initialized is called Temporal Dead Zone for the variable.</p>
+    <hr>
+
     <!-- Transpiler -->
     <h2>Transpiler</h2>
     <p>• If you want old or older versions of browsers to understand new features, one must use a
@@ -51,7 +63,7 @@
     <hr>
 
     <h2>What is the difference between Polyfilling and Transpiling?</h2>
-    <p>• A polyfill tries to emulate specific methods, so you cna use them as if they were already
+    <p>• A polyfill tries to emulate specific methods, so you can use them as if they were already
         supported by the browser (or node engine), on the other hand, A transpiler will modify your
         code and replace code by other code that does the same, which can then be executed in old
         browsers.</p>
