@@ -30,13 +30,16 @@
 
     <!-- What is Temporal Dead Zone ? -->
     <h2>What is Temporal Dead Zone?</h2>
-    <p>• Temporal Dead Zone is the time since when the let variable was hoisted and till it is intialized some value,
+    <p>• Temporal Dead Zone is the time since when the let variable was hoisted and till it is intialized some
+        value,
         the time between that is known as the Temporal Dead Zone.</p>
     <p>• So whenever you try to access a variable inside the temporal dead zone, it gives you a ReferenceError.</p>
-    <p>• When the variable is inside this temporal dead zone you cannot access them and they can only be accessed once
+    <p>• When the variable is inside this temporal dead zone you cannot access them and they can only be accessed
+        once
         some value is initialized to them.</p>
     <p>• The let and const variables are not accessible before they are initialized with some value, and the phase
-        between the starting of the execution of block in which the let or const variable is declared till that variable
+        between the starting of the execution of block in which the let or const variable is declared till that
+        variable
         is being initialized is called Temporal Dead Zone for the variable.</p>
     <hr>
 
@@ -62,6 +65,7 @@
         </script> -->
     <hr>
 
+    <!-- What is the difference between Polyfilling and Transpiling? -->
     <h2>What is the difference between Polyfilling and Transpiling?</h2>
     <p>• A polyfill tries to emulate specific methods, so you can use them as if they were already
         supported by the browser (or node engine), on the other hand, A transpiler will modify your
@@ -74,6 +78,22 @@
         you wanted to add are not working.</p>
     <p>• And transpiler will let us use the new code of the new features which we wanted to add,
         but will transform or convert it into the new source code first.</p>
+    <hr>
+
+    <!-- What are Template Strings -->
+    <h2>What are Template Strings</h2>
+    <p>• Template Literals are strings which allow embedded expressions. Before ES6 introduced them, they were
+        called as Template Strings.</p>
+    <p>• JavaScript strings always had limitations compared to the strings of the other programming languages. Apart
+        from simple concatenation, there was not much we could have done with strings.</p>
+    <p>• ECMAScript 6's template literals provided syntax for creating domain-specific languages (DSLs) for working
+        with
+        content in a safer way than the solutions available earlier.</p>
+    <p>• With template strings we can handle following features easily : <br>
+        -- Multiline Strings <br>
+        -- Basic string formatting <br>
+        -- HTML Escaping </p>
+    <p>• Against the standard ' ' and " " quotes template literals uses back-ticks ` `.</p>
     <hr>
 
     <script src="script.js" async defer></script>
