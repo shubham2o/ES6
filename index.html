@@ -136,6 +136,148 @@
         -- We will use arrow (=>) function for it.</p>
     <hr>
 
+    <!-- ES6 Object Literals -->
+    <h2>ES6 Object Literals</h2>
+    <p>• Applications in javascript are getting more complex with time and use lots of objects, which makes sense as
+        almost everything in javascript are some types of objects.</p>
+    <p>• With more objects, comes necessity to use them more efficiently and ES6 focuses heavily on improving them.</p>
+    <p>• JavaScript has different types of objects used in standard as well as in the execution environment added by the
+        browsers or Nodejs.</p>
+    <p>• The succinct syntax of object literals for creating objects in javascript has made it so popular that JSON
+        adopted the same syntax. ES6 make object literals more powerful and more succinct by extending the syntax.</p>
+
+    • <strong>Deconstructing variables into keys and values</strong>
+    <p>-- <u>Before ES6</u> :
+        <br> Creating an object literal in javascript.
+        <br><br> var name = 'Prashant Yadav';
+        <br> var age = 23;
+        <br> var nationality = 'Indian';
+        <br> var designation = 'Software Engineer';
+        <br><br> var user = {
+        <br> name : name,
+        <br> age : age,
+        <br> nationality : nationality,
+        <br> designation : designation
+        <br> }
+        <br><br> console.log(user);
+        <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
+    </p>
+    <p>-- <u>After ES6</u> :
+        <br> Creating an object literal in ES6.
+        <br><br> var name = 'Prashant Yadav';
+        <br> var age = 23;
+        <br> var nationality = 'Indian';
+        <br> var designation = 'Software Engineer';
+        <br><br> var user = {
+        <br> name,
+        <br> age,
+        <br> nationality,
+        <br> designation
+        <br> }
+        <br><br> console.log(user);
+        <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
+    </p>
+    <p>-- If variable name is same as the property name then we can skip assigning the value to the property and use the
+        above syntax to declare objects.</p>
+
+    • <strong>Declaring functions inside objects</strong>
+    <p>-- <u>Before ES6</u> :
+        <br><br> var name = 'Prashant Yadav';
+        <br> var age = 23;
+        <br> var nationality = 'Indian';
+        <br> var designation = 'Software Engineer';
+        <br><br> var user = {
+        <br> name : name,
+        <br> age : age,
+        <br> nationality : nationality,
+        <br> designation : designation,
+        <br> detail : function () {
+        <br> return this.name + ' is an ' + this.nationality + ' working as ' + this.designation;
+        <br> }}
+        <br><br>console.log(user.detail());
+        <br> // Prashant Yadav is an Indian working as Software Engineer
+    </p>
+    <p>-- <u>After ES6</u> :
+        <br><br> var name = 'Prashant Yadav';
+        <br> var age = 23;
+        <br> var nationality = 'Indian';
+        <br> var designation = 'Software Engineer';
+        <br><br> var user = {
+        <br> name,
+        <br> age,
+        <br> nationality,
+        <br> designation
+        <br> detail() {
+        <br> return this.name + ' is an ' + this.nationality + ' working as ' + this.designation;
+        <br> }}
+        <br><br> console.log(user);
+        <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
+    </p>
+    <p>-- We no longer need to declare function keyword, we can declare the function directly with above syntax.</p>
+
+    • <strong>Declaring functions inside objects</strong>
+    <p>const math = {
+        <br> add : (a, b) => a + b,
+        <br> mul : (a, b) => a * b,
+        <br> sub : (a, b) => a-b,
+        <br> div : (a, b) => a / b,
+        <br> }
+        <br><br> console.log(math.add(1, 1)); // 2
+        <br> console.log(math.mul(1, 1)); // 1
+        <br> console.log(math.sub(1, 1)); // 0
+        <br> console.log(math.div(1, 1)); // 1
+    </p>
+
+    • <strong>Dynamically define properties of an Object</strong>
+    <p>-- <u>Before ES6</u> :
+        <br><br> To dynamically define properties of the object in ES5 or earlier we used to first create the object and
+        then modify it.
+        <br><br> var name = 'name';
+        <br> // create empty object
+        <br><br> var user = {}
+        <br> // update the object
+        <br><br> var [name] = 'Prashant Yadav';
+        <br><br> console.log(user.name);
+        <br> // Prashant Yadav
+    </p>
+    <p>-- <u>After ES6</u> :
+        <br><br> With ES6 we can do both the things same time. Computed property names are part of the object literal
+        syntax.
+        <br><br> var name = 'first';
+        <br><br> var suffix = 'name';
+        <br> // create empty object and assigning the value
+        <br><br> var user = {
+        <br> [name] : 'Prashant',
+        <br> ['last ' + suffix] : 'Yadav'
+        <br> }
+        <br><br> console.log(user.first + ' ' + user['last name']);
+        <br> // Prashant Yadav
+    </p>
+
+    • <strong>Declaring duplicate properties</strong>
+    <p><u>Before ES6</u> :
+        <br><br> In ES5 and earlier declaring duplicate property names inside object literals in strict mode would throw
+        error.
+        <br><br>'use strict';
+        <br> var user = {
+        <br> name : 'prashant',
+        <br> name : 'golu'
+        <br> }
+        <br><br> // syntax error
+    </p>
+    <p><u>After ES6</u> :
+        <br><br> In ES6 we can declare duplicate property names inside object literals in strict as well as nonstrict
+        mode. It will just overwrite the existing value.
+        <br><br>'use strict';
+        <br> var user = {
+        <br> name : 'prashant',
+        <br> name : 'golu'
+        <br> }
+        <br><br> console.log(user.name);
+        <br> // golu
+    </p>
+    <hr>
+
     <script src="script.js" async defer></script>
 </body>
 
