@@ -146,6 +146,7 @@
     <p>• The succinct syntax of object literals for creating objects in javascript has made it so popular that JSON
         adopted the same syntax. ES6 make object literals more powerful and more succinct by extending the syntax.</p>
 
+    <!-- Deconstructing variables into keys and values -->
     • <strong>Deconstructing variables into keys and values</strong>
     <p>-- <u>Before ES6</u> :
         <br> Creating an object literal in javascript.
@@ -180,6 +181,7 @@
     <p>-- If variable name is same as the property name then we can skip assigning the value to the property and use the
         above syntax to declare objects.</p>
 
+    <!-- Declaring functions inside objects -->
     • <strong>Declaring functions inside objects</strong>
     <p>-- <u>Before ES6</u> :
         <br><br> var name = 'Prashant Yadav';
@@ -215,7 +217,8 @@
     </p>
     <p>-- We no longer need to declare function keyword, we can declare the function directly with above syntax.</p>
 
-    • <strong>Declaring functions inside objects</strong>
+    <!-- We can also declare the => fat arrow function -->
+    • <strong>We can also declare the => fat arrow function</strong>
     <p>const math = {
         <br> add : (a, b) => a + b,
         <br> mul : (a, b) => a * b,
@@ -228,7 +231,8 @@
         <br> console.log(math.div(1, 1)); // 1
     </p>
 
-    • <strong>Dynamically define properties of an Object</strong>
+    <!-- Dynamically define properties of an object -->
+    • <strong>Dynamically define properties of an object</strong>
     <p>-- <u>Before ES6</u> :
         <br><br> To dynamically define properties of the object in ES5 or earlier we used to first create the object and
         then modify it.
@@ -254,8 +258,9 @@
         <br> // Prashant Yadav
     </p>
 
+    <!-- Declaring duplicate properties -->
     • <strong>Declaring duplicate properties</strong>
-    <p><u>Before ES6</u> :
+    <p>-- <u>Before ES6</u> :
         <br><br> In ES5 and earlier declaring duplicate property names inside object literals in strict mode would throw
         error.
         <br><br>'use strict';
@@ -265,7 +270,7 @@
         <br> }
         <br><br> // syntax error
     </p>
-    <p><u>After ES6</u> :
+    <p>-- <u>After ES6</u> :
         <br><br> In ES6 we can declare duplicate property names inside object literals in strict as well as nonstrict
         mode. It will just overwrite the existing value.
         <br><br>'use strict';
@@ -275,6 +280,179 @@
         <br> }
         <br><br> console.log(user.name);
         <br> // golu
+    </p>
+    <hr>
+
+    <!-- JavaScript Set -->
+    <h2>JavaScript Set</h2>
+    <p>• Before ES6 there was only one data-structure, Array which we could have used for numeric operations and for
+        other non-numeric operations we had to use Objects.</p>
+    <p>• Arrays came with extra methods which we could use to create stack and queue.</p>
+    <p>• With the introduction of javascript Set and Map, we now have some extra data-structures in javascript's
+        library.</p>
+    <p>• Sets are the unique collection of values of any type, which also includes NaN and undefined.</p>
+
+    <!-- Before ES6 -->
+    <p>-- <u>Before ES6</u> :
+        <br><br> Before sets introduction in ES6 there was workaround which developers used to have to create sets but
+        there was limitation to that workaround. Let us see that first to exactly know why there was need for it.
+        <br><br> var set = {};
+        <br> if (!set.foo) {
+        <br> set.foo = true;
+        <br> }
+    </p>
+    <p>-- We have created an emoty object and assigned true to the properties so that we can check if that value is
+        present.</p>
+    <p>-- This works well in the simple scenarios but when we have to use more complex situations we run into the
+        limitations of the object properties.</p>
+    <p>var set = {};
+        <br> var key = {};
+        <br> set[25] = 'prashant';
+        <br> set[key] = 5;
+        <br><br> console.log(set['25']); // prashant
+        </br> console.log(set[key]); // 5
+    </p>
+    <p>-- Here the object internally converts the numeric 25 and key to string '25' because object parameters must be
+        string, Thus we cannot use both of them simultaneously.</p>
+
+    <!-- After ES6 -->
+    <p>-- <u>After ES6</u> :
+        <br><br> With introduction of Set and WeakSet in ES6 we don't have to worry about the workaround limitations.
+        <br>let set = new Set([!iterable]);
+        <br> if an iterable object like Array is passed then all its items will be added to the set.
+        <br><br> let set = new Set();
+        <br> set.add(25);
+        <br> set.add('25');
+        <br><br> let set2 = new Set([1, 2, 3, 4, 5, 6, 7, 8]);
+        <br> let set3 = new Set('Prashant');
+        <br><br> console.log(set.size); // 2
+        <br> console.log(set2.size); // 2
+        <br> console.log(set3.size); // 7 ['P', 'r', 'a', 's', 'h', 'n', 't'];
+    </p>
+    <p>-- Sets do not convert the values while checking (Except for +0 and -0).</p>
+    <p>let set = new Set();
+        <br> let key = {};
+        <br> let key2 = {};
+        <br> set.add(key);
+        <br> set.add(key2);
+        <br><br> console.log(set.size) // 2
+    </p>
+
+    <!-- Sets Properties -->
+    • <strong>Sets Properties</strong>
+    <p>-- Set.prototype.constructor <br>
+        -- Set.prototype.size
+    </p>
+
+    <!-- Sets Methods -->
+    • <strong>Sets Methods</strong>
+    <p>-- Set.prototype.add(item)
+        <br> -- Set.prototype.clear()
+        <br> -- Set.prototype.delete(item)
+        <br> -- Set.prototype.entries()
+        <br> -- Set.prototype.foreach(callback, thisArg)
+        <br> -- Set.prototype.has(item)
+        <br> -- Set.prototype[@@iterator]()
+        <br> -- Set.prototype.keys()
+        <br> -- Set.prototype.values()
+    </p>
+
+    <!-- Iterating with javascript Set -->
+    • <strong>Iterating with javascript Set</strong>
+    <p>-- <u>Simple Iteration</u>
+        <br><br> let set = new Set();
+        <br> set.add(1);
+        <br> set.add(2);
+        <br> set.add(3);
+        <br> set.add(4);
+        <br><br> // foreach loop
+        <br> set.forEach((e) => {console.log(e);});
+        <br> // 1
+        <br> // 2
+        <br> // 3
+        <br> // 4
+        <br><br> for of loop
+        <br> for (let item of set) {console.log(item);}
+        <br> // 1
+        <br> // 2
+        <br> // 3
+        <br> // 4
+    </p>
+
+    <!-- Iterating objects of Set -->
+    <p>-- <u>Iterating objects of Set</u>
+        <br><br> let set = new Set();
+        <br> set.add(1);
+        <br> set.add('prashant');
+        <br> set.add({a: 1, b: 2, c:3, d:4});
+        <br><br> for (let item of set.keys()) {
+        <br> console.log(item);
+        <br> }
+        <br> // 1
+        <br> // prashant
+        <br> // {a: 1, b: 2, c: 3, d: 4}
+        <br><br> for (let item of set.values()) {
+        <br> console.log(item);
+        <br> }
+        <br> // 1
+        <br> // prashant
+        <br> // {a:1, b:2, c:3, d:4}
+        <br><br> for (let [key, value] of set.entries()) {
+        <br> console.log(key, value);
+        <br> }
+        <br> // 1 1
+        <br> // prashant prashant
+        <br> // {a:1, b:2, c:3, d:4} {a:1, b:2, c:3, d:4}
+        <br><br> let set = new Set();
+        <br> set.add(1);
+        <br> set.add('prashant');
+        <br> set.add({a:1, b:2, c:3, d:4});
+        <br><br> // using `.next()`
+        <br>const iterator = set.values();
+        <br><br> console.log(iterator.next().value);
+        <br> // 1
+        <br><br> console.log(iterator.next().value);
+        <br> // prashant
+        <br><br> console.log(iterator.next().value);
+        <br> // {a:1, b:2, c:3, d:4}
+    </p>
+    <hr>
+
+    <!-- WeakSets -->
+    <h2>WeakSets</h2>
+    <p>• A WeakSet is same as the Set except it can only store objects.</p>
+    <p>let user = {name: 'Prashant Yadav', age: 23};
+        <br>const users = new WeakSet(user);
+    </p>
+    <hr>
+
+    <!-- Difference between Sets and WeakSets -->
+    <h2>Difference between Sets and WeakSets</h2>
+    <p>• WeakSets can only store objects unlike the Sets.</p>
+    <p>• The add() method throws error when non-object item is passed to the WeakSet.</p>
+    <p>• The has() and delete() method returns false for non-object.</p>
+    <p>• WeakSets are not Iterable.</p>
+    <p>• They do not have size and foreach as well.</p>
+    <p> let user = {name: 'Prashant Yadav', age: 23};
+        <br> let user2 = {name: 'Prashant Yadav', age: 23};
+        <br> let user3 = {name: 'Prashant Yadav', age: 23};
+        <br><br> const users = new WeakSet();
+        <br> users.add(user);
+        <br> users.add(user2);
+        <br> users.add(user3);
+        <br><br> console.log(users.has(user2)); // true
+        <br><br> users.delete(user2);
+        <br><br> console.log(users.has(user2)); // false
+    </p>
+    <p>• The WeakSet cleans itself once the object is deleted or if there is no reference to the object.</p>
+    <p> console.log(users);
+        <br> user3 = null;
+        <br> console.log(users);
+        <br> // WeakSet {{...}, {...}}
+        <br><br> // Wait for few seconds
+        <br> console.log(users);
+        <br> // WeakSet {{...}}
+        <br> // it automatically garbage collect the object.
     </p>
     <hr>
 
