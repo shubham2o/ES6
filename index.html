@@ -150,32 +150,38 @@
     • <strong>Deconstructing variables into keys and values</strong>
     <p>-- <u>Before ES6</u> :
         <br> Creating an object literal in javascript.
-        <br><br> var name = 'Prashant Yadav';
+        <br>
+        <br> var name = 'Prashant Yadav';
         <br> var age = 23;
         <br> var nationality = 'Indian';
         <br> var designation = 'Software Engineer';
-        <br><br> var user = {
+        <br>
+        <br> var user = {
         <br> name : name,
         <br> age : age,
         <br> nationality : nationality,
         <br> designation : designation
         <br> }
-        <br><br> console.log(user);
+        <br>
+        <br> console.log(user);
         <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
     </p>
     <p>-- <u>After ES6</u> :
         <br> Creating an object literal in ES6.
-        <br><br> var name = 'Prashant Yadav';
+        <br>
+        <br> var name = 'Prashant Yadav';
         <br> var age = 23;
         <br> var nationality = 'Indian';
         <br> var designation = 'Software Engineer';
-        <br><br> var user = {
+        <br>
+        <br> var user = {
         <br> name,
         <br> age,
         <br> nationality,
         <br> designation
         <br> }
-        <br><br> console.log(user);
+        <br>
+        <br> console.log(user);
         <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
     </p>
     <p>-- If variable name is same as the property name then we can skip assigning the value to the property and use the
@@ -184,11 +190,13 @@
     <!-- Declaring functions inside objects -->
     • <strong>Declaring functions inside objects</strong>
     <p>-- <u>Before ES6</u> :
-        <br><br> var name = 'Prashant Yadav';
+        <br>
+        <br> var name = 'Prashant Yadav';
         <br> var age = 23;
         <br> var nationality = 'Indian';
         <br> var designation = 'Software Engineer';
-        <br><br> var user = {
+        <br>
+        <br> var user = {
         <br> name : name,
         <br> age : age,
         <br> nationality : nationality,
@@ -196,15 +204,18 @@
         <br> detail : function () {
         <br> return this.name + ' is an ' + this.nationality + ' working as ' + this.designation;
         <br> }}
-        <br><br>console.log(user.detail());
+        <br>
+        <br>console.log(user.detail());
         <br> // Prashant Yadav is an Indian working as Software Engineer
     </p>
     <p>-- <u>After ES6</u> :
-        <br><br> var name = 'Prashant Yadav';
+        <br>
+        <br> var name = 'Prashant Yadav';
         <br> var age = 23;
         <br> var nationality = 'Indian';
         <br> var designation = 'Software Engineer';
-        <br><br> var user = {
+        <br>
+        <br> var user = {
         <br> name,
         <br> age,
         <br> nationality,
@@ -212,7 +223,8 @@
         <br> detail() {
         <br> return this.name + ' is an ' + this.nationality + ' working as ' + this.designation;
         <br> }}
-        <br><br> console.log(user);
+        <br>
+        <br> console.log(user);
         <br> // {name : 'Prashant Yadav', age : 23, nationality : 'Indian', designation : 'Software Engineer'}
     </p>
     <p>-- We no longer need to declare function keyword, we can declare the function directly with above syntax.</p>
@@ -225,7 +237,8 @@
         <br> sub : (a, b) => a-b,
         <br> div : (a, b) => a / b,
         <br> }
-        <br><br> console.log(math.add(1, 1)); // 2
+        <br>
+        <br> console.log(math.add(1, 1)); // 2
         <br> console.log(math.mul(1, 1)); // 1
         <br> console.log(math.sub(1, 1)); // 0
         <br> console.log(math.div(1, 1)); // 1
@@ -234,51 +247,67 @@
     <!-- Dynamically define properties of an object -->
     • <strong>Dynamically define properties of an object</strong>
     <p>-- <u>Before ES6</u> :
-        <br><br> To dynamically define properties of the object in ES5 or earlier we used to first create the object and
+        <br>
+        <br> To dynamically define properties of the object in ES5 or earlier we used to first create the object and
         then modify it.
-        <br><br> var name = 'name';
+        <br>
+        <br> var name = 'name';
         <br> // create empty object
-        <br><br> var user = {}
+        <br>
+        <br> var user = {}
         <br> // update the object
-        <br><br> var [name] = 'Prashant Yadav';
-        <br><br> console.log(user.name);
+        <br>
+        <br> var [name] = 'Prashant Yadav';
+        <br>
+        <br> console.log(user.name);
         <br> // Prashant Yadav
     </p>
     <p>-- <u>After ES6</u> :
-        <br><br> With ES6 we can do both the things same time. Computed property names are part of the object literal
+        <br>
+        <br> With ES6 we can do both the things same time. Computed property names are part of the object literal
         syntax.
-        <br><br> var name = 'first';
-        <br><br> var suffix = 'name';
+        <br>
+        <br> var name = 'first';
+        <br>
+        <br> var suffix = 'name';
         <br> // create empty object and assigning the value
-        <br><br> var user = {
+        <br>
+        <br> var user = {
         <br> [name] : 'Prashant',
         <br> ['last ' + suffix] : 'Yadav'
         <br> }
-        <br><br> console.log(user.first + ' ' + user['last name']);
+        <br>
+        <br> console.log(user.first + ' ' + user['last name']);
         <br> // Prashant Yadav
     </p>
 
     <!-- Declaring duplicate properties -->
     • <strong>Declaring duplicate properties</strong>
     <p>-- <u>Before ES6</u> :
-        <br><br> In ES5 and earlier declaring duplicate property names inside object literals in strict mode would throw
+        <br>
+        <br> In ES5 and earlier declaring duplicate property names inside object literals in strict mode would throw
         error.
-        <br><br>'use strict';
+        <br>
+        <br>'use strict';
         <br> var user = {
         <br> name : 'prashant',
         <br> name : 'golu'
         <br> }
-        <br><br> // syntax error
+        <br>
+        <br> // syntax error
     </p>
     <p>-- <u>After ES6</u> :
-        <br><br> In ES6 we can declare duplicate property names inside object literals in strict as well as nonstrict
+        <br>
+        <br> In ES6 we can declare duplicate property names inside object literals in strict as well as nonstrict
         mode. It will just overwrite the existing value.
-        <br><br>'use strict';
+        <br>
+        <br>'use strict';
         <br> var user = {
         <br> name : 'prashant',
         <br> name : 'golu'
         <br> }
-        <br><br> console.log(user.name);
+        <br>
+        <br> console.log(user.name);
         <br> // golu
     </p>
     <hr>
@@ -294,14 +323,16 @@
 
     <!-- Before ES6 -->
     <p>-- <u>Before ES6</u> :
-        <br><br> Before sets introduction in ES6 there was workaround which developers used to have to create sets but
+        <br>
+        <br> Before sets introduction in ES6 there was workaround which developers used to have to create sets but
         there was limitation to that workaround. Let us see that first to exactly know why there was need for it.
-        <br><br> var set = {};
+        <br>
+        <br> var set = {};
         <br> if (!set.foo) {
         <br> set.foo = true;
         <br> }
     </p>
-    <p>-- We have created an emoty object and assigned true to the properties so that we can check if that value is
+    <p>-- We have created an empty object and assigned true to the properties so that we can check if that value is
         present.</p>
     <p>-- This works well in the simple scenarios but when we have to use more complex situations we run into the
         limitations of the object properties.</p>
@@ -309,7 +340,8 @@
         <br> var key = {};
         <br> set[25] = 'prashant';
         <br> set[key] = 5;
-        <br><br> console.log(set['25']); // prashant
+        <br>
+        <br> console.log(set['25']); // prashant
         </br> console.log(set[key]); // 5
     </p>
     <p>-- Here the object internally converts the numeric 25 and key to string '25' because object parameters must be
@@ -317,16 +349,20 @@
 
     <!-- After ES6 -->
     <p>-- <u>After ES6</u> :
-        <br><br> With introduction of Set and WeakSet in ES6 we don't have to worry about the workaround limitations.
+        <br>
+        <br> With introduction of Set and WeakSet in ES6 we don't have to worry about the workaround limitations.
         <br>let set = new Set([!iterable]);
         <br> if an iterable object like Array is passed then all its items will be added to the set.
-        <br><br> let set = new Set();
+        <br>
+        <br> let set = new Set();
         <br> set.add(25);
         <br> set.add('25');
-        <br><br> let set2 = new Set([1, 2, 3, 4, 5, 6, 7, 8]);
+        <br>
+        <br> let set2 = new Set([1, 2, 3, 4, 5, 6, 7, 8]);
         <br> let set3 = new Set('Prashant');
-        <br><br> console.log(set.size); // 2
-        <br> console.log(set2.size); // 2
+        <br>
+        <br> console.log(set.size); // 2
+        <br> console.log(set2.size); // 8
         <br> console.log(set3.size); // 7 ['P', 'r', 'a', 's', 'h', 'n', 't'];
     </p>
     <p>-- Sets do not convert the values while checking (Except for +0 and -0).</p>
@@ -335,7 +371,8 @@
         <br> let key2 = {};
         <br> set.add(key);
         <br> set.add(key2);
-        <br><br> console.log(set.size) // 2
+        <br>
+        <br> console.log(set.size) // 2
     </p>
 
     <!-- Sets Properties -->
@@ -360,18 +397,21 @@
     <!-- Iterating with javascript Set -->
     • <strong>Iterating with javascript Set</strong>
     <p>-- <u>Simple Iteration</u>
-        <br><br> let set = new Set();
+        <br>
+        <br> let set = new Set();
         <br> set.add(1);
         <br> set.add(2);
         <br> set.add(3);
         <br> set.add(4);
-        <br><br> // foreach loop
+        <br>
+        <br> // foreach loop
         <br> set.forEach((e) => {console.log(e);});
         <br> // 1
         <br> // 2
         <br> // 3
         <br> // 4
-        <br><br> for of loop
+        <br>
+        <br> for of loop
         <br> for (let item of set) {console.log(item);}
         <br> // 1
         <br> // 2
@@ -381,39 +421,48 @@
 
     <!-- Iterating objects of Set -->
     <p>-- <u>Iterating objects of Set</u>
-        <br><br> let set = new Set();
+        <br>
+        <br> let set = new Set();
         <br> set.add(1);
         <br> set.add('prashant');
         <br> set.add({a: 1, b: 2, c:3, d:4});
-        <br><br> for (let item of set.keys()) {
+        <br>
+        <br> for (let item of set.keys()) {
         <br> console.log(item);
         <br> }
         <br> // 1
         <br> // prashant
         <br> // {a: 1, b: 2, c: 3, d: 4}
-        <br><br> for (let item of set.values()) {
+        <br>
+        <br> for (let item of set.values()) {
         <br> console.log(item);
         <br> }
         <br> // 1
         <br> // prashant
         <br> // {a:1, b:2, c:3, d:4}
-        <br><br> for (let [key, value] of set.entries()) {
+        <br>
+        <br> for (let [key, value] of set.entries()) {
         <br> console.log(key, value);
         <br> }
         <br> // 1 1
         <br> // prashant prashant
         <br> // {a:1, b:2, c:3, d:4} {a:1, b:2, c:3, d:4}
-        <br><br> let set = new Set();
+        <br>
+        <br> let set = new Set();
         <br> set.add(1);
         <br> set.add('prashant');
         <br> set.add({a:1, b:2, c:3, d:4});
-        <br><br> // using `.next()`
+        <br>
+        <br> // using `.next()`
         <br>const iterator = set.values();
-        <br><br> console.log(iterator.next().value);
+        <br>
+        <br> console.log(iterator.next().value);
         <br> // 1
-        <br><br> console.log(iterator.next().value);
+        <br>
+        <br> console.log(iterator.next().value);
         <br> // prashant
-        <br><br> console.log(iterator.next().value);
+        <br>
+        <br> console.log(iterator.next().value);
         <br> // {a:1, b:2, c:3, d:4}
     </p>
     <hr>
@@ -436,24 +485,357 @@
     <p> let user = {name: 'Prashant Yadav', age: 23};
         <br> let user2 = {name: 'Prashant Yadav', age: 23};
         <br> let user3 = {name: 'Prashant Yadav', age: 23};
-        <br><br> const users = new WeakSet();
+        <br>
+        <br> const users = new WeakSet();
         <br> users.add(user);
         <br> users.add(user2);
         <br> users.add(user3);
-        <br><br> console.log(users.has(user2)); // true
-        <br><br> users.delete(user2);
-        <br><br> console.log(users.has(user2)); // false
+        <br>
+        <br> console.log(users.has(user2)); // true
+        <br>
+        <br> users.delete(user2);
+        <br>
+        <br> console.log(users.has(user2)); // false
     </p>
     <p>• The WeakSet cleans itself once the object is deleted or if there is no reference to the object.</p>
     <p> console.log(users);
         <br> user3 = null;
         <br> console.log(users);
         <br> // WeakSet {{...}, {...}}
-        <br><br> // Wait for few seconds
+        <br>
+        <br> // Wait for few seconds
         <br> console.log(users);
         <br> // WeakSet {{...}}
         <br> // it automatically garbage collect the object.
     </p>
+    <hr>
+
+    <!-- JavaScript Map -->
+    <h2>JavaScript Map</h2>
+    <p>• Before ES6 in order to store the key value pair we had to use objects. We never had any extra data structure
+        except for an array.</p>
+    <p>• With the introduction of JavaScript Map and Set, we have somethig extra to handle the data.</p>
+    <p>• Just like Sets, Maps are also used to store the unique values except here it is key value pair.</p>
+
+    <!-- Before ES6 -->
+    <p>• <u><strong>Before ES6</strong></u>
+        <br> -- Prior to the introduction of javascript Map, developers used to have a workaround to handle the key
+        value pair but there was limitations to that workaround. Let us see the workaround first to see why there was
+        need for the Maps :
+        <br>
+        <br> var map = {};
+        <br> map.foo = "bar";
+        <br>
+        <br> // retrieving a value
+        <br> let value = map.foo;
+        <br> console.log(value);
+    </p>
+    <p>-- This approach works fine but if the situation gets more complex, then we run into the limitations of the
+        object properties.
+        <br>
+        <br> var map = {};
+        <br> map[5] = "bar";
+        <br> console.log(map["5"]);
+    </p>
+    <p>-- Object internally converts anything to string to store the values. So the numeric 5 is converted to "5". Thus
+        we cannot use numeric key. The same happends when we use objects as the key.
+        <br>
+        <br> var map = {};
+        <br> var key = {};
+        <br> var key2 = {};
+        <br> map[key] = "prashant";
+        <br> console.log(map[key2]); // prashant
+    </p>
+    <p>-- It converts object to string.</p>
+    <p>-- Maps with falsy key were also difficult to handle.
+        <br>
+        <br> var map = {};
+        <br> map.foo = false;
+        <br> // checking for the existence of "foo" or a nonzero value?
+        <br> if (map.foo) {
+        // ...
+        }
+    </p>
+    <p>-- Here we want to check if value is present inside the key foo but the falsy is automatically converted to the
+        false. <strong>Note :</strong> we could use in operator, but that still check in the prototype of the objects,
+        which make it only safe to use when an object has a null prototype.</p>
+
+    <!-- After ES6 -->
+    <p>• <u><strong>After ES6</strong></u>
+        <br> -- Maps are ordered list of key value pair when key as well as value can be of any type.
+        <br>
+        <br> let map = new Map([iterable]);
+        <br>
+        <br> -- If an iterable object like Array (arrays with two elements, eg. [[1, 'one'],[2, 'two']]) whose
+        elements
+        are key-value pairs is passed then all its items will be added to the Map.
+        <br> -- null values are treated as undefined.
+        <br>
+        <br> let map = new Map();
+        <br> map.set(5, 'prashant');
+        <br> map.set('5', 'yadav');
+        <br> console.log(map.size); // 2
+        <br> console.log(map.get(5)); // 'prashant'
+        <br> console.log(map.get('5')); // 'yadav'
+        <br>
+        <br> let map2 = new Map([["name", "prashant"], ["age",, 23]]);
+        <br> console.log(map2.size); // 2
+        <br> console.log(map2.get('name')); // prashant
+        <br>
+        <br> -- we can also use objects as the key.
+        <br>
+        <br> let map = new Map();
+        <br> let key1 = {};
+        <br> let key2 = {};
+        <br> map.set(key1, 'prashant');
+        <br> map.set(key2, 'yadav');
+        <br> console.log(map.size); // 2
+        <br> console.log(map.get(key1)); // 'prashant'
+        <br> console.log(map.get(key2)); // 'yadav'
+    </p>
+
+    <!-- Map Properties -->
+    <p>• <strong>Map Properties</strong></p>
+    <p> -- Map.prototype.constructor
+        <br> -- Map.prototype.size
+    </p>
+
+    <!-- Map Methods -->
+    <p>• <strong>Map Methods</strong></p>
+    <p> -- Map.prototype.set(key, value)
+        <br> -- Map.prototype.clear()
+        <br> -- Map.prototype.delete(key)
+        <br> -- Map.prototype.entries()
+        <br> -- Map.prototype.foreach(callback, thisArg)
+        <br> -- Map.prototype.has(key)
+        <br> -- Map.prototype.get(key)
+        <br> -- Map.prototype.[@@iterator]()
+        <br> -- Map.prototype.keys()
+        <br> -- Map.prototype.delete(key)
+        <br> -- Map.prototype.values()
+    </p>
+
+    <!-- Adding item to the javascript map -->
+    <p>• <strong>Adding item to the javascript map</strong></p>
+    <p>let map = new Map();
+        <br> map.set(1, 'prashant');
+        <br> map.set(2, 'anil');
+        <br> map.set(3, 'taha');
+        <br> map.set(4, 'ankit');
+        <br> map.set(4, 'ankit'); // ignore the duplicate values
+        <br> map.set('4', 'yadav');
+        <br> map.set('fullname', 'My name is Prashant Yadav');
+        <br> map.set(undefined, 20);
+        <br> let key = {a : 0, b : 1};
+        <br> map.set(key, '25');
+        <br> let key2 = function() {};
+        <br> map.set(key2, 27);
+        <br> map.set(null, 23);
+        <br> console.log(map.size); // 9
+        <br> console.log(map);
+        <br>
+        <br> // Map(9) {1 => "prashant", 2 => "anil", 3 => "taha", 4 => "ankit", "4" => "yadav", …}
+        <br> // size: (...)
+        <br> // __proto__: Map
+        <br> // [[Entries]]: Array(9)
+        <br> // 0: {1 => "prashant"}
+        <br> // 1: {2 => "anil"}
+        <br> // 2: {3 => "taha"}
+        <br> // 3: {4 => "ankit"}
+        <br> // 4: {"4" => "yadav"}
+        <br> // 5: {"fullname" => "My name is Prashant Yadav"}
+        <br> // 6: {undefined => 20}
+        <br> // 7: {Object => 25}
+        <br> // 8: {null => 23}
+        <br> // length: 9
+    </p>
+
+    <!-- Finding item in Map -->
+    <p>• <strong>Finding item in Map</strong></p>
+    <p>console.log(map.has(key)); // true
+        <br> console.log(map.has(null)); // true
+        <br> console.log(map.has(key2)); // true
+        <br> console.log(map.has(0)); // false
+        <br>
+        <br> -- Always pass objects as keys by storing it in variables
+        <br>
+        <br> let key = {a:0, b: 1};
+    </p>
+
+    <!-- Getting the value of a given key -->
+    <p>• <strong>Getting the value of a given key</strong></p>
+    <p> console.log(map.get(key)); // 25
+        <br> console.log(map.get(null)); // 23
+        <br> console.log(map.get(0)); // undefined
+    </p>
+
+    <!-- Removing an item with the given key from the Map -->
+    <p>• <strong>Removing an item with the given key from the Map</strong></p>
+    <p> map.delete(key);
+        <br> map.delete(null);
+        <br>
+        <br> console.log(map.has(key)); // false
+        <br> console.log(map.has(null)); // false
+    </p>
+
+    <!-- Iterating with Maps -->
+    <p>• <strong>Iterating with Maps</strong></p>
+    <p> -- <u>Simple Iteration</u>
+        <br> map.forEach((value, key, ownerMap) => {
+        <br> console.log(key + " " + value);
+        <br> console.log(ownerMap === map);
+        <br> });
+        <br>
+        <br> // 1 prashant
+        <br> // true
+        <br>
+        <br> // 2 anil
+        <br> // true
+        <br>
+        <br> // 3 taha
+        <br> // true
+        <br>
+        <br> // 4 ankit
+        <br> // true
+        <br>
+        <br> // 4 yadav
+        <br> // true
+        <br>
+        <br> // fullname My name is Prashant Yadav
+        <br> // true
+        <br>
+        <br> // undefined 20
+        <br> // true
+        <br>
+        <br> // [object Object] 25
+        <br> // true
+        <br>
+        <br> // null 23
+        <br> // true
+        <br>
+        <br> -- We have used => arrow function, ownerMap is passed as this which equals to the current object ownerMap
+        === map that is why it is returning true.
+    </p>
+
+    <!-- Using for of loop -->
+    <p>• <strong>Using for of loop</strong></p>
+    <p> for(const [key, val] of map) {
+        <br> console.log(key, val);
+        <br> }
+        <br>
+        <br> // 1 "prashant"
+        <br> // 2 "anil"
+        <br> // 3 "taha"
+        <br> // 4 "ankit"
+        <br> // 4 yadav
+        <br> // fullname My name is Prashant Yadav
+        <br> // undefined 20
+        <br> // {a : 0, b : 1} 25
+        <br> // f () {} 27
+        <br> // null 23
+    </p>
+
+    <!-- Using Map.prototype.keys() -->
+    <p>• <strong>Using Map.prototype.keys()</strong></p>
+    <p> for (var key of map.keys()) {
+        <br> console.log(key);
+        <br> }
+        <br>
+        <br> // 1
+        <br> // 2
+        <br> // 3
+        <br> // 4
+        <br> // '4'
+        <br> // fullname
+        <br> // undefined
+        <br> // {a:0, b:1}
+        <br> // f () {}
+        <br> // null
+    </p>
+
+    <!-- Using Map.prototype.values() -->
+    <p>• <strong>Using Map.prototype.values()</strong></p>
+    <p> for (var key of map.values()) {
+        <br> console.log(key);
+        <br> }
+        <br>
+        <br> // prashant
+        <br> // anil
+        <br> // taha
+        <br> // ankit
+        <br> // yadav
+        <br> // My name is Prashant Yadav
+        <br> // 20
+        <br> // 25
+        <br> // 27
+        <br> // 23
+    </p>
+
+    <!-- Using Map.prototype.entries() -->
+    <p>• <strong>Using Map.prototype.entries()</strong></p>
+    <p>-- We can destructure the value to access them separately.
+        <br>
+        <br> for (let[key,value] of map.entries()) {
+        <br> console.log(key + " = " + value);
+        <br> }
+        <br>
+        <br> // 1 = prashant
+        <br> // 2 = anil
+        <br> // 3 = taha
+        <br> // 4 = ankit
+        <br> // 4 = yadav
+        <br> // fullname = My name is Prashant Yadav
+        <br> // undefined = 20
+        <br> // [object Object] = 25
+        <br> // function() {} = 27
+        <br> // null = 23
+    </p>
+    <hr>
+
+    <!-- WeakMaps -->
+    <h2>WeakMaps</h2>
+    <p>• WeakMaps are to the maps what weakSets are to the sets. In weakMap every key must be object, inserting an
+        non-object will result in error. Objects are held weakly so that if there is no reference to key then that value
+        will be removed from the WeakMap or garbage collected.</p>
+    <p>• Note : key should be objects, but value can be anything.</p>
+    <p>• let key = {}, key2 = {};
+        <br> let weakMap = new WeakMap([[key1, "prashant"],[key2, 23]]);
+        <br> console.log(weakMap.has(key1)); // true
+        <br> console.log(weakMap.get(key1)); // "prashant"
+        <br> console.log(weakMap.has(key2)); // true
+        <br> console.log(weakMap.get(key2)); // 23
+    </p>
+    <p>• The WeakMap cleans itself once the key is deleted or if there is no reference to the key.</p>
+    <p> let dad = {name : "Daddy"};
+        <br> let mom = {name : "Mommy"};
+        <br>
+        <br> let map = new Map();
+        <br> let weakMap = new weakMap();
+        <br>
+        <br> map.set(dad, 1);
+        <br> map.set(mom, 2);
+        <br>
+        <br> dad = null;
+        <br> mom = null;
+        <br>
+        <br> map;
+        <br> // map(1) {{...}}
+        <br>
+        <br> weakMap;
+        <br> // Wait for few seconds
+        <br> // WeakMap {}
+        <br> -- As we can see mom was garbade collected when we set its value to null while dad is still present.
+    </p>
+    <hr>
+
+    <!-- Difference between Maps and WeakMaps -->
+    <h2>Difference between Maps and WeakMaps</h2>
+    <p>• Passing non-objects as key will result in error.</p>
+    <p>• The has(key) and delete(key) method returns false for non-object.</p>
+    <p>• They have only four methods has(key), delete(key), get(key), set(key, value).</p>
+    <p>• WeakMaps are not iterable.</p>
+    <p>• WeakMaps are very useful when creating objects related to particular DOM elements. That way when DOM element is
+        no longer associated then it will automatically be garbage collected.</p>
     <hr>
 
     <script src="script.js" async defer></script>
