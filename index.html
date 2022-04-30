@@ -839,6 +839,174 @@
         no longer associated then it will automatically be garbage collected.</p>
     <hr>
 
+    <!-- JavaScript Spread and Rest Operator -->
+    <h2>JavaScript Spread and Rest Operator</h2>
+    <p>• The ... is the spread syntax that allows you to specify an array that should be split and have its items passed
+        in as seperate arguments to a function.</p>
+    <p>• According to MDN - The spread syntax allows an iterable such as an array expression or string to be expanded in
+        places where zero or more arguments (for function calls) or elements (for array literals) expected, or an object
+        expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br>
+        <br> function multiply(a, b, c, d, e) {
+        <br> return a * b * c * d * e;
+        <br> }
+        <br>
+        <br> // Spreads the array as seperate parameters
+        <br> console.log(multiply(...arr)); // 120
+        <br>
+        <br> -- Consider a scenario where we have to find the largest number from the given array of numbers. The ideal
+        solution will be to use Math.max with apply method.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br> console.log(Math.max.apply(null, arr)); // 5
+        <br>
+        <br>-- The solution works perfectly but it is bit confusing, ES6 ... spread operator makes this very easy and
+        simple.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br> console.log(Math.max(...arr)); // 5
+        <br>
+        <br> JavaScript engine spills arr into individual arguments.
+    </p>
+
+    <!-- Combining multiple arrays -->
+    <p>• <u><strong>Combining multiple arrays</strong></u></p>
+    <p>-- With javascript ... spread operator it is easy to combine multiple arrays.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br> let arr2 = [6, 7, 8, 9, 10];
+        <br>
+        <br> let combine = [...arr, ...arr2];
+        <br> console.log(combine);
+        <br> // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        <br>
+        <br> let combine2 = [0, ...arr, 11, ...arr2, 12];
+        <br> console.log(combine2);
+        <br> // [0, 1, 2, 3, 4, 5, 11, 6, 7, 8, 9, 10, 12]
+        <br>
+        <br> let combine3 = [...arr, 'prashant', ...arr2];
+        <br> console.log(combine3);
+        <br> // [1, 2, 3, 4, 5, 'prashant', 6, 7, 8, 9, 10]
+        <br>
+        <br> The ... spread operator allows us to pass all the items of arr and arr2 at the same time add extra items
+        also.
+    </p>
+
+    <!-- Copying an array -->
+    <p>• <u><strong>Copying an array</strong></u></p>
+    <p>-- Drawbacks while copying arrays before ... spread operators.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br> let copy = arr;
+        <br> console.log(copy);
+        <br> // [1, 2, 3, 4, 5]
+        <br>
+        <br> arr.push(6);
+        <br> console.log(arr);
+        <br> // [1, 2, 3, 4, 5, 6]
+        <br>
+        <br> console.log(copy);
+        <br> // [1, 2, 3, 4, 5, 6]
+        <br>
+        <br> -- We have added an extra item to arr with arr.push(6) but the same gets updates in copy, this happens
+        because arr is neve copied to copy but passed as the reference which means copy is just pointing to arr. A
+        seperate solution would be to copy all the items individually using loops.
+        <br> -- We can solve this issue using javascript ... spread operator.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br> let copy = [...arr];
+        <br> console.log(copy);
+        <br> // [1, 2, 3, 4, 5]
+        <br>
+        <br> arr.push(6);
+        <br> console.log(arr);
+        <br> // [1, 2, 3, 4, 5, 6]
+        <br>
+        <br> console.log(copy);
+        <br> // [1, 2, 3, 4, 5]
+    </p>
+
+    <!-- Use with Constructors -->
+    <p>• <u><strong>Use with Constructors</strong></u></p>
+    <p>-- It is not possible to directly use an array and apply with new keyword while declaring constructor. But with
+        the javascript ... spread operators we can do this easily.
+        <br>
+        <br> let dateFields = [1970, 0, 1];
+        <br> let d = new Date(...dateFields);
+        <br> console.log(d);
+        <br> // Thu Jan 01 1970 00:00:00 GMT+0530 (Indian Standard Time)
+    </p>
+
+    <!-- Use with Functions -->
+    <p>• <u><strong>Use with Functions</strong></u></p>
+    <p>-- With the introduction of ... spread operators in ES6 we can now replace the apply() method to pass the arrays
+        of arguments to functions.
+        <br>
+        <br> let example = (a, b, c, d = 1) {
+        <br> return a * b * c * d;
+        <br> }
+        <br> let arr = [1, 2, 3, 4, 5];
+        <br>
+        <br> // Before ... spread operators
+        <br> console.log(example.apply(null, arr)); // 24
+        <br>
+        <br> // After ... spread operators
+        <br> console.log(example(...arr)); // 24
+        <br>
+        <br> -- Array is split into the parameters and automatically passed by the javascript engine. Extra parameters
+        are ignored.
+    </p>
+    <hr>
+
+    <!-- Rest Parameters -->
+    <h2>Rest Parameters</h2>
+    <p>• Rest parametes are exactly opposite of spread operator. Spread operator is used to expand all the items of the
+        arrays while rest parameters is used to condense different items to form an array. Rest parameters are also
+        indicated with ... in javascript.
+        <br>
+        <br> let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+        <br> const [first, second, ...remaining] = arr;
+        <br> console.log(first);
+        <br> // 1
+        <br> console.log(second);
+        <br> // 2
+        <br> console.log(remaining);
+        <br> // [3, 4, 5, 6, 7, 8]
+        <br>
+        <br> -- The destructuring removed the first and second item and added the remaining items to the rest parameters
+        ...remaining
+    </p>
+
+    <!-- Rest parameters with Functions -->
+    <p>• Rest parameters with Functions</p>
+    <p> -- The rest parameters are idealy used with functions instead of arguments object as it has many limitations.
+        <br>
+        <br> let addAll = (...args) => {
+        <br> return args.reduce((a, b) => {return a + b});
+        <br> }
+        <br>
+        <br> console.log(addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        <br> // 55
+    </p>
+    <hr>
+
+    <!-- Difference between arguments and Rest parameters -->
+    <h2>Difference between arguments and Rest parameters</h2>
+    <p>-- arguments objects are not real arrays they are just array like objects which have only one property length,
+        where as rest parameters are real arrays which has all methods like pop, forEach, push etc.</p>
+    <p>-- For arguments objects we cannot use different names while with the rest parameters we can use our custom
+        names.</p>
+    <p>function multiply(d, ...everything){
+        <br> return everything.map(e => d * e);
+        <br> }
+        <br>
+        <br> console.log(multiply(2, 1, 2, 3, 4, 5, 6, 7, 8));
+        <br> // [2, 4, 6, 8, 10, 12, 14, 16]
+    </p>
+    <hr>
+
     <script src="script.js" async defer></script>
 </body>
 
