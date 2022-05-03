@@ -1236,6 +1236,60 @@
     </p>
     <hr>
 
+    <!-- Introduction to ES6 class -->
+    <h2>Introduction to ES6 class</h2>
+    <p>• As you might already know javascript is a prototype-based language. It was not designed to object-oriented but
+        as the javascript was getting popular there were different libraries which were trying to extend javascript to
+        be class based. So ES6 introduced class in javascript.</p>
+    <p>• According to MDN - classes are primarily syntactically sugar ove js's existing prototype-based inheritance. The
+        class syntax does not introduce a new object-oriented inheritance model to JavaScript.</p>
+    <p>• Before diving deep into the javascript class, let us first see how different object-oriented concepts were
+        handles through the prototype.</p>
+
+    <!-- Before ES6 -->
+    <p>• <strong><u>Before ES6</u></strong></p>
+    <p>-- Functions were used to replicate class.
+        <br> -- Declaring properties
+        <br>
+        <br> // Creating new functions
+        <br> function individual(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> -- Calling the function as class
+        <br>
+        <br> let person1 = new individual('prashant', 23);
+        <br> let person2 = new individual('yogesh', 23);
+        <br>
+        <br> -- Declaring Methods
+        <br>
+        <br> // By declaring method inside the function
+        <br> function individual(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> this.details = function() {
+        <br> return this.name + ' is ' + this.age + ' years old.';
+        <br> }
+        <br> }
+        <br>
+        <br> // By declaring the method through prototype
+        <br> individual.prototype.details = function() {
+        <br> return this.name + ' is ' + this.age + ' years old.';
+        <br> };
+        <br>
+        <br> // Calling the function
+        <br> let person1 = new individual('prashant', 23);
+        <br> console.log(person1);
+        <br>
+        <br> // "prashant is 23 years old."
+    </p>
+
+    <!-- After ES6 -->
+    <p>• <strong><u>After ES6</u></strong></p>
+    <p></p>
+    <hr>
+
     <script src="script.js" async defer></script>
 </body>
 
