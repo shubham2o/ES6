@@ -1007,6 +1007,235 @@
     </p>
     <hr>
 
+    <!-- JavaScript destructuring -->
+    <h2>JavaScript destructuring</h2>
+    <p>• Arrays and Objects are the heart of the javascript and we use it so much while programming. But still, even if
+        we want only a few value or property from either of them we have to call them entirely. In order to make this
+        simple ES6 introduced destructuring in javascript.</p>
+    <p>• According to MDN - <br>
+        The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack value from
+        arrays or properties from objects, into distinct variables.</p>
+
+    <!-- Before ES6< -->
+    <p>• <strong><u>Before ES6</u></strong>
+        <br>
+        <br> -- In order to access the properties of objects we had to call them like this.
+        <br>
+        <br> var person = {
+        <br> name : 'prashant yadav',
+        <br> age : 23,
+        <br> role : Software Engineer
+        <br> }
+        <br>
+        <br> var name = person.name;
+        <br> var age = person.age;
+        <br> var role = person.role;
+        <br> console.log(name, age, role);
+        <br> // prashant yadav 23 Software Engineer
+    </p>
+
+    <!-- After ES6 -->
+    <p>• <strong><u>After ES6</u></strong>
+        <br>
+        <br> -- Now with the destructuring we have much simple syntax to access the properties of objects.
+        <br> -- Object destructuring uses object literals syntax {}
+        <br>
+        <br> var person = {
+        <br> name : 'prashant yadav',
+        <br> age : 23,
+        <br> role : Software Engineer
+        <br> }
+        <br>
+        <br> let {name, age} = person;
+        <br> console.log(name, age);
+        <br> // prashant yadav 23
+        <br>
+        <br> let {name, age, role} = person;
+        <br> console.log(name, age, role);
+        <br> // prashant yadav 23 Software Engineer
+        <br>
+        <br> let {name, role} = person;
+        <br> console.log(name, role);
+        <br> // prashant yadav software engineer
+        <br>
+        <br> -- We can now access any property from the object and assign it to the variable, Here the variable name and
+        the property name is same so we are just destructuring it.
+        <br> -- let {role} = person; Removes the person.role and assign it the variable name role.
+        <br> -- If we want to use a different variable name then we can do it like below.
+        <br>
+        <br> let {name : fullname, age : completeAge, role : designation} = person;
+        <br>
+        <br> console.log(fullname, completeAge, desgination);
+        <br> // prashant yadav 23 Software Engineer
+        <br>
+        <br> -- let {name : fullName} pulls the person.name property and assign it to the fullname variable.
+        <br> -- Default values can also be assigned to the variables.
+        <br>
+        <br> let person = {
+        <br> name : 'prashant yadav',
+        <br> age : 23
+        <br> }
+        <br> let {name : fullName, age : completeAge, role : designation = 'Engineer'} = person;
+        <br>
+        <br> console.log(fullName, completeAge, designation);
+        <br> // prashant yadav 23 Engineer
+    </p>
+
+    <!-- Nested objects destructuring -->
+    <p>• <strong>Nested objects destructuring</strong></p>
+    <p>-- We can also use the destructuring for nested objects.
+        <br>
+        <br> let person {
+        <br> name : 'prashant yadav',
+        <br> age : 23,
+        <br> address : {
+        <br> street : 'random',
+        <br> city : 'mumbai',
+        <br> pincode : 421209
+        <br> }
+        <br> }
+        <br>
+        <br> let {address : {street, city}} = person;
+        <br> console.log(street, city);
+        <br> // random mumbai
+        <br>
+        <br> -- Custom variables with nested objects destructuring.
+        <br>
+        <br> let {address : {street : completeStreet, city : completeCity}} = person;
+        <br> console.log(completeStreet, completeCity);
+        <br> // random mumbai
+    </p>
+    <hr>
+
+    <!-- Array Destructuring -->
+    <h2>Array Destructuring</h2>
+
+    <!-- Before ES6 -->
+    <p>• <strong><u>Before ES6</u></strong>
+        <br>
+        <br> var arr = ['prashant', 23, 'engineer', 'javascript'];
+        <br> var first = arr[0];
+        <br> var second = arr[1];
+        <br> console.log(first, second);
+        <br> // prashant 23
+    </p>
+
+    <!-- After ES6 -->
+    <p>• <strong><u>After ES6</u></strong>
+        <br>
+        <br> -- Array destructuring is similar to the object destructuring but it uses array literals syntax [].
+        <br>
+        <br> let arr = ['prashant', 23, 'engineer', 'javascript'];
+        <br> let [first, second] = arr;
+        <br> console.log(first, second);
+        <br> // prashant 23
+        <br>
+        <br> -- If you want to skip and access values at other positions then we can do so by keeping that position
+        blank.
+        <br>
+        <br> let [first, second] = arr;
+        <br> console.log(first, , third);
+        <br> // prashant engineer
+        <br>
+        <br> -- We have kept the seconds position blank.
+        <br>
+        <br> -- We can also assign default values to the variables.
+        <br>
+        <br> let [, second, , fourth, fifth = 'default value'] = arr;
+        <br> console.log(second, fourth, fifth);
+        <br> // 23 javascript default value
+        <br>
+        <br> -- We can also use ... spread operator to copy all the remaining array values in any variable.
+        <br>
+        <br> let [first, ...remaining] = arr;
+        <br> console.log(first, remaining);
+        <br> // prashant [23, 'engineer', 'javascript']
+    </p>
+    <hr>
+
+    <!-- Nested Array Destructuring -->
+    <h2>Nested Array Destructuring</h2>
+    <p>• It is also possible to do nested array destructuring.</p>
+    <p> let arr = ['prashant', 23, 'engineer', ['random', 'mumbai', 421209]];
+        <br> let [first,,, [, city, zip, state = 'Maharashtra']] = arr;
+        <br> console.log(first, city, zip, state);
+        <br> // prashant mumbai 421209 Maharashtra
+    </p>
+    <hr>
+
+    <!-- Swapping with Array destructuring -->
+    <h2>Swapping with Array destructuring</h2>
+    <p>• We can swap values very easily with an array destructuring.</p>
+    <p>let first = 1;
+        <br> let second = 2;
+        <br> console.log(first, second);
+        <br> // 1 2
+        <br>
+        <br> // Swap
+        <br> [first, second] = [second, first];
+        <br>
+        <br> console.log(first, second);
+        <br> // 2 1
+    </p>
+    <hr>
+
+    <!-- Cloning an array with destructuring -->
+    <h2>Cloning an array with destructuring</h2>
+    <p>let arr = [2, 3, 5, 6]
+        <br> let [ ...cloned ] = arr;
+        <br> console.log(cloned);
+        <br> [2, 3, 5, 6]
+    </p>
+    <hr>
+
+    <!-- Mixed destructuring in javascript -->
+    <h2>Mixed destructuring in javascript</h2>
+    <p>• We can use array and object destructuring simultaneously.</p>
+    <p>let person = {
+        <br> name : 'prashant yadav',
+        <br> age : 23,
+        <br> address : {
+        <br> street : 'random',
+        <br> city : 'mumbai',
+        <br> pincode : 421209
+        <br> },
+        <br> phone : [112124124124, 23124124124, 125151241212]
+        <br> };
+        <br>
+        <br> let {
+        <br> name,
+        <br> address : {street : streetAddress},
+        <br> phone : [first]
+        <br> } = person;
+        <br>
+        <br> console.log(name, streetAddress, first);
+        <br> // prashant yadav random 112124124124
+    </p>
+    <hr>
+
+    <!-- Destructuring with Functions -->
+    <h2>Destructuring with Functions</h2>
+    <p>• We can use destructuring with parameters passed to the functions.</p>
+    <p>let person = {
+        <br> name : 'prashant yadav',
+        <br> age : 23,
+        <br> address : {
+        <br> street : 'random',
+        <br> city : 'mumbai',
+        <br> pincode : 421209
+        <br> },
+        <br> phone : [112124124124, 23124124124, 125151241212]
+        <br> };
+        <br>
+        <br> let show Details = ({name, age}) => {
+        <br> console.log(`${name} is ${age} years old`);
+        <br> };
+        <br>
+        <br> showDetails(person);
+        <br> // prashant yadav is 23 years old
+    </p>
+    <hr>
+
     <script src="script.js" async defer></script>
 </body>
 
