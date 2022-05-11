@@ -538,7 +538,7 @@
         <br> console.log(map["5"]);
     </p>
     <p>-- Object internally converts anything to string to store the values. So the numeric 5 is converted to "5". Thus
-        we cannot use numeric key. The same happends when we use objects as the key.
+        we cannot use numeric key. The same happens when we use objects as the key.
         <br>
         <br> var map = {};
         <br> var key = {};
@@ -910,8 +910,8 @@
         <br> console.log(copy);
         <br> // [1, 2, 3, 4, 5, 6]
         <br>
-        <br> -- We have added an extra item to arr with arr.push(6) but the same gets updates in copy, this happens
-        because arr is neve copied to copy but passed as the reference which means copy is just pointing to arr. A
+        <br> -- We have added an extra item to arr with arr.push(6) but the same gets update in copy, this happens
+        because arr is never copied to copy but passed as the reference which means copy is just pointing to arr. A
         seperate solution would be to copy all the items individually using loops.
         <br> -- We can solve this issue using javascript ... spread operator.
         <br>
@@ -981,7 +981,7 @@
 
     <!-- Rest parameters with Functions -->
     <p>• Rest parameters with Functions</p>
-    <p> -- The rest parameters are idealy used with functions instead of arguments object as it has many limitations.
+    <p> -- The rest parameters are ideally used with functions instead of arguments object as it has many limitations.
         <br>
         <br> let addAll = (...args) => {
         <br> return args.reduce((a, b) => {return a + b});
@@ -1227,7 +1227,7 @@
         <br> phone : [112124124124, 23124124124, 125151241212]
         <br> };
         <br>
-        <br> let show Details = ({name, age}) => {
+        <br> let showDetails = ({name, age}) => {
         <br> console.log(`${name} is ${age} years old`);
         <br> };
         <br>
@@ -1257,12 +1257,12 @@
         <br> this.age = age;
         <br> }
         <br>
-        <br> -- Calling the function as class
+        <br> -- <u>Calling the function as class</u>
         <br>
         <br> let person1 = new individual('prashant', 23);
         <br> let person2 = new individual('yogesh', 23);
         <br>
-        <br> -- Declaring Methods
+        <br> -- <u>Declaring Methods</u>
         <br>
         <br> // By declaring method inside the function
         <br> function individual(name, age) {
@@ -1287,7 +1287,164 @@
 
     <!-- After ES6 -->
     <p>• <strong><u>After ES6</u></strong></p>
-    <p></p>
+    <p>-- There are two ways of declaring a class.
+        <br>
+        <br> 1) Class declarations
+        <br> 2) Class expressions
+    </p>
+    <p>1-- <u>Class Declarations</u>
+        <br>
+        <br> // declaring class
+        <br> class Individual {
+        <br>
+        <br> // declaring properties inside constructor
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // declaring display method
+        <br> details() {
+        <br> return `${this.name} is ${this.age} years old.`;
+        <br> }
+        <br> }
+        <br>
+        <br> // creating a person object from individual class
+        <br> let person = new Individual('prashant', 23);
+        <br>
+        <br> // calling the display method
+        <br> console.log(person.details());
+        <br> // "prashant is 23 years old."
+    </p>
+    <p>2-- <u>Class Expression</u>
+        <br>
+        <br> We can assign the class expression to the variables.
+        <br> •• Un-named class expressions
+        <br> •• Named class expressions
+        <br>
+        <br> •• // UN-NAMED class expressions
+        <br> const person = class {
+        <br>
+        <br> // declaring properties inside constructor
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // declaring display methods
+        <br> display() {
+        <br> return `${this.name} is ${this.age} years old.`;
+        <br> }
+        <br> }
+        <br>
+        <br> •• // NAMED class expressions
+        <br> const Person = class Individual {
+        <br>
+        <br> // declaring properties inside constructor
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // declaring display method
+        <br> details() {
+        <br> return `${this.name} is ${this.age} years old.`;
+        <br> }
+        <br> }
+        <br>
+        <br> // creating a person object from individual class members
+        <br> let person1 = new Person('prashant', 23);
+        <br>
+        <br> // calling the display method
+        <br> console.log(person1,details());
+        <br> // "prashant is 23 years old."
+    </p>
+    <p> -- constructor() should be declared only once.</p>
+    <p> -- As we can see class works similar to the prototype based approach. But there are many advantages of using
+        classes.</p>
+    <p> -- Unlike functions, class declarations are not hoisted, which means variables declared inside are not
+        accessible outside. They remain in temporal dead zone just like let until execution reaches the declaration.</p>
+    <p> -- Code inside class runs in strict mode.</p>
+    <p> -- Methods declared inside class are non-enumerable. Unlike prototype based where we had to use
+        object.defineProperty() to make method non-enumerable.</p>
+    <p> -- Calling the class constructor without new keyword will throw error. Also all the methods declared inside
+        class lack the [[construct]] method and calling them with new keyword will result in error.</p>
+    <p> -- Declaring the method name same as class name inside class will result in error.</p>
+
+    <!-- Static methods -->
+    <p>• <strong><u>Static methods</u></strong></p>
+    <p> -- Static methods are only accessible by parents (class), derived child or instance of the class cannot access
+        them.
+        <br>
+        <br> class Person{
+        <br>
+        <br> // declaring properties
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // declaring method
+        <br> // accessible by all
+        <br> details() {
+        <br> console.log(`${this.name} is ${this.age} years old.`);
+        <br> }
+        <br>
+        <br> // static method
+        <br> // accessible only by parent
+        <br> static display() {
+        <br> console.log(`I am only accessible by parent.`);
+        <br> }
+        <br> }
+        <br>
+        <br> INPUT :
+        <br> let person1 = new Person('prashant', 23);
+        <br> person1.details();
+        <br> Person.display();
+        <br> person1.display();
+        <br>
+        <br> OUTPUT :
+        <br> "prashant is 23 years old."
+        <br> "I am only accessible by parent."
+        <br> Uncaught TypeError : person1.display is not a function
+    </p>
+
+    <!-- Accessor Properties -->
+    <p>• <strong><u>Accessor Properties</u></strong></p>
+    <p> -- There are two accessor properties which we can use with class :
+        <br> 1) Set :- To set the value of any property.
+        <br> 2) Get :- To get the value of any property.
+    </p>
+    <p> class Person {
+        <br>
+        <br> // declaring properties
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // Set name
+        <br> set nickName(name) {
+        <br> this.name = name;
+        <br> }
+        <br>
+        <br> // Get Name
+        <br> get nickName() {
+        return `your name is ${this.name}`;
+        <br> }
+        <br> }
+        <br>
+        <br> INPUT :
+        <br> let person1 = new Person1('Prashant Yadav', 23);
+        <br> console.log(person1.nickName);
+        <br> // set the new nickName
+        <br> person1.nickName = "Golu";
+        <br> console.log(person1.nickName);
+        <br>
+        <br> OUTPUT :
+        <br> "your name is Prashant Yadav"
+        <br> "your name is Golu"
+    </p>
     <hr>
 
     <script src="script.js" async defer></script>
