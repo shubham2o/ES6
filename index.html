@@ -1445,6 +1445,186 @@
         <br> "your name is Prashant Yadav"
         <br> "your name is Golu"
     </p>
+
+    <!-- Computed method names -->
+    <p>• <strong><u>Computed method names</u></strong></p>
+    <p> -- Class methods and Accessor properties can computed names, that means their name can be provided at runtime.
+        <br>
+        <br> let myMethod = 'displayDetail';
+        <br>
+        <br> class Person {
+        <br>
+        <br> // declaring properties
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // declaring a method with the computed name
+        <br> [myMethod]() {
+        <br> return `${this.name} is ${this.age} years old.`;
+        <br> }
+        <br> }
+        <br>
+        <br> INPUT :
+        <br> let person = new Person('Prashant Yadav', 23);
+        <br> console.log(person.displayDetail());
+        <br>
+        <br> OUTPUT :
+        <br> "Prashant Yadav is 23 years old."
+    </p>
+    <p> -- Accessor properties can also use computed methods.
+        <br>
+        <br> let myMethod = 'differentName';
+        <br> class Person() {
+        <br>
+        <br> // declaring properties
+        <br> constructor(name, age) {
+        <br> this.name = name;
+        <br> this.age = age;
+        <br> }
+        <br>
+        <br> // Set name
+        <br> set [myMethod](name) {
+        <br> this.name = name;
+        <br> }
+        <br>
+        <br> // get name
+        <br> get [myMethod]() {
+        <br> return `your name is ${this.name}`
+        <br> }
+        <br> }
+        <br>
+        <br> INPUT :
+        <br> let person1 = new Person('Prashant Yadav', 23);
+        <br> console.log(person1.differentName);
+        <br>
+        <br> // set the new differentName
+        <br> person1.differentName = "Golu";
+        <br> console.log(person1.differentName);
+        <br>
+        <br> OUTPUT :
+        <br> "your name is Prashant Yadav"
+        <br> "your name is Golu"
+    </p>
+
+    <!-- Inheritance -->
+    <p>• <strong><u>Inheritance</u></strong></p>
+    <p> -- Before ES6, implementing inheritance was a tedious process with prototype. Proper inheritance required
+        multiple steps.</p>
+    <p> function Rectangle(width, height) {
+        <br> this.width = width;
+        <br> this.height = height;
+        <br> }
+        <br>
+        <br> // declaring method to calculate area;
+        <br> Rectangle.prototype.getArea = function() {
+        <br> return this.height * this.width;
+        <br> }
+        <br>
+        <br> // Extending rectangle to use it as square
+        <br> // using call, apply, bind
+        <br> function Square(length) {
+        <br> Rectangle.call(this, length, length);
+        <br> }
+        <br>
+        <br> // Extending Methods
+        <br> Square.prototype = Object.create(Rectangle.prototype, {
+        <br> constructor: {
+        <br> value: Square,
+        <br> enumerable: true;
+        <br> writable: true,
+        <br> configurable: true
+        <br> }
+        <br> });
+    </p>
+    <p> var square = new Square(3);
+        <br>
+        <br> console.log(square.getArea()); // 9
+        <br> console.log(square instanceof Square); // true
+        <br> console.log(square instanceof Rectangle); // true
+    </p>
+    <p> -- After ES6, we can use extends keyword to achieve the inheritance.</p>
+    <p> // Declaring the rectangle class
+        <br> class Rectangle {
+        <br> // initialize the properties
+        <br> constructor(length, width) {
+        <br> this.length = length;
+        <br> this.width = width;
+        <br> }
+        <br>
+        <br> // Method to calculate the area
+        <br> getArea() {
+        <br> return this.length * this.width;
+        <br> }
+        <br> }
+        <br>
+        <br> // Extend the Square to use Rectangle
+        <br> class Square extends Rectangle {
+        <br> constructor(length) {
+        <br>
+        <br> // same as Rectangle.call(this, length,, length)
+        <br> super(length, length);
+        <br> }
+        <br> }
+    </p>
+    <p> const square = new Square(3);
+        <br>
+        <br> console.log(square.getArea()); // 9
+        <br> console.log(square instanceof Square); // true
+        <br> console.log(square instanceof Rectangle); // true
+    </p>
+    <p> -- Points to remember while inheriting the another class.
+        <br> > If you inherit any class and declare the constructor() method inside it, you must declare super() method
+        as well inside the constructor(). Failing to do so will result in error.
+        <br> > If there are any static methods in the parent class then they are also accessible to the inherited class.
+        <br> > new.target can be used to check the current instance of the class and where it is getting called from.
+    </p>
+
+    <!-- Derived class form expression -->
+    <p>• <strong><u>Derived class form expression</u></strong></p>
+    <p> -- One of the most powerful features of ES6 class is the ability to derive from a class from an expression.</p>
+    <p> -- You can use extends with any expression as long as the expression resolves to a function with [[Construct]]
+        and a prototype.</p>
+    <p> // A function declaration
+        <br> function Rectangle(length, width) {
+        <br> this.length = length;
+        <br> this.width = width;
+        <br> }
+        <br>
+        <br> // Adding method to the function
+        <br> Rectangle.prototype.constructor = function() {
+        <br> return this.length * this.width;
+        <br> };
+        <br>
+        <br> // Extending the rectangle function
+        <br> class Square extends Rectangle {
+        <br> constructor(length) {
+        <br> super(length, length);
+        <br> }
+        <br> }
+    </p>
+    <p> INPUT :
+        <br> let x = new Square(3);
+        <br> console.log(x.getArea()); // 9
+        <br> console.log(x instanceof Rectangle); // true
+    </p>
+    <p> -- With this powerful feature, we can inherit the inbuilt functions as well. The only clause is that they should
+        have [[construct]] method and a prototype.</p>
+
+    <!-- Extending the Array -->
+    <p>• <strong><u>Extending the Array</u></strong></p>
+    <p> class MyArray extends Array {
+        <br> // empty
+        <br> }
+        <br>
+        <br> var colors = new MyArray();
+        <br> colors[0] = "red";
+        <br> console.log(colors.length); // 1
+        <br>
+        <br> colors.length = 0;
+        <br> console.log(colors[0]); // undefined
+    </p>
     <hr>
 
     <script src="script.js" async defer></script>
