@@ -62,7 +62,7 @@
     <p>• Now after importing the cdn, we need to tell the browser that the current script which we
         are writing is in Babel.</p>
     <p>• We can do that by setting the type of the script tag.</p>
-    <!-- <script type = "text/babel">
+    <!-- < type = "text/babel">
             let n = [1, 2, 3];
             let squares = n.map((e) => e * e);
         </script> -->
@@ -1843,6 +1843,98 @@
         <br> import { name, age } from './module.js';
         <br> console.log(add(name, age));
         <br> // 'Prashant', 23
+    </p>
+
+    <!-- > Importing all modules -->
+    <p><strong>> Importing all modules</strong>
+        <br> // import all the modules
+        <br> import * from './module.js'
+        <br> console.log(name, age);
+        <br> console.log(add(1, 2));
+        <br> // 'Prashant', 23
+        <br> // 3
+    </p>
+    <p> -- Note! We cannot change the value of imported binding directly. We have to do it explicitly through the
+        imported module.</p>
+    <p> // export data
+        <br> export name = 'prashant';
+        <br> export function updateName(val) {
+        <br> name = val;
+        <br> }
+        <br>
+        <br> // import data
+        <br> import {name, updateName} from './example.js';
+        <br> console.log(name); // prashant
+        <br> updateName('pranav');
+        <br> console.log(name); // pranav
+        <br> name = 'sachin'; // syntax error
+    </p>
+
+    <!-- > Importing default modules -->
+    <p><strong>> Importing default modules</strong>
+        <br> -- We can give any name to default modules
+        <br> // importing default modules
+        <br> import sum from './example.js'
+        <br>
+        <br> // Exporting multiple values with one default value
+        <br> export let name = 'prashant';
+        <br> export let age = 23;
+        <br> export function(name, age) {
+        <br> return `${name} is ${age} years old.`;
+        <br> }
+        <br>
+        <br> import display, {name, age} from './modules.js';
+        <br> // OR
+        <br> import {display as default, name, age} from './module.js';
+        <br>
+        <br> console.log(display(name, age));
+        <br> // "prashant is 23 years old."
+    </p>
+
+    <!-- > Importing default modules -->
+    <p><strong>> Importing default modules</strong>
+        <br> -- We can rename the module name while importing them.
+        <br>
+        <br> // Renaming modules while importing
+        <br> import {sum as add} from './module.js';
+    </p>
+
+    <!-- > Re-exporting imported modules -->
+    <p><strong>> Re-exporting imported modules</strong>
+        <br> -- We can re-export the imported modules.
+        <br> // Basic
+        <br> import { add } from './module.js';
+        <br> export { add }
+        <br>
+        <br> // In single line
+        <br> export { add } from './module.js';
+        <br>
+        <br> // Renaming nad exporting
+        <br> export { add as sum } from './module.js';
+        <br>
+        <br> // Exporting all modules
+        <br> export * from './module.js';
+    </p>
+
+    <!-- > Loading modules in browser -->
+    <p><strong>> Loading modules in browser</strong>
+        <br> -- Even before ES6 browsers hand different ways to import files.
+        <br>
+        <br> -- Load different files with script element and src.
+        <br> -- Embedding inline code with script element and without src.
+        <br>
+        <br> -- But browsers have now updated themselves to handle the modular code.
+        <br> -- We can use type attribute to use the import and export.
+        <!-- // load the file
+        <script script src="module.js" type="module"> </script>
+        
+        // load the inline script
+        <script script type="module">
+            import { add } from './modules.js';
+            
+            console.log(add(1, 2));
+        </script>
+        -->
     </p>
     <hr>
 
