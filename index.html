@@ -2198,6 +2198,48 @@
     <hr>
 
 
+    <!-- JavaScript Iterator -->
+    <h2>JavaScript Iterator</h2>
+    <p>• JavaScript has a traditional way of iterating on the objects with loops like for, while, which need to keep
+        track of each item in the collection. But this approach creates many complexities when we have to do nested
+        iterations. We need to initialize a variable for each loop and keep track of them.</p>
+    <p>• To solve this, ES6 has introduced iterators which makes working with a collection of items easier. Iterators,
+        when called, returns the next object of the collection.</p>
+
+    <!-- What are javascript iterator? -->
+    <p><strong>• <u>What are javascript iterator?</u></strong></p>
+    <p> -- Iterators are just objects with a set of an interface designed for iteration. Each iterator object has a
+        next() methods that returns an object. Each returned object has two properties |value| the next value and |done|
+        a boolean indicating that this is the last item.</p>
+    <p> -- The iterator keeps track of the current item in the collection and with each next() call returns the
+        appropriate next value.</p>
+    <p> function * numbers() {
+        <br> yield 1;
+        <br> yield 2;
+        <br> yield 3;
+        <br> }
+        <br>
+        <br> let iterator = numbers();
+        <br> console.log(iterator.next());
+        <br> // {value : 1, done : false}
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : 2, done : false}
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : 3, done : false}
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : 4, done : true}
+    </p>
+    <p> -- Here we have used a generator to create the iterator.</p>
+
+    <!-- What are generators? -->
+    <p><strong>• <u>What are generators?</u></strong></p>
+    <p> -- A generator is a function that returns an iterator. They are indicated by * and uses yield keyword.</p>
+    <hr>
+
+
     <script src="script.js" async defer></script>
 </body>
 
