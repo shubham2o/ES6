@@ -1939,6 +1939,256 @@
     <hr>
 
 
+    <!-- JavaScript Symbol -->
+    <h2>JavaScript Symbol</h2>
+    <p>• Before introduction of symbol in ES6, it was very hard to define the private variables. Developers mostly used
+        to do a workaround of using closure to make variables private. But now symbols can be used to create private
+        object members. Symbols are added as a primitive type just like strings, numbers, booleans, null and undefined.
+    </p>
+    <p>• We can create symbols in javascript by using Symbol() function.</p>
+    <p> let name = Symbol();
+        <br> let details = {};
+        <br> details[name] = 'Prashant Yadav';
+        <br> console.log(details[name]);
+        <br> // "Prashant Yadav"
+        <br>
+        <br> let fullName = symbol();
+    </p>
+    <p>• As symbols are primitve values, we cannot use them as a constructor. Calling symbol with new keyword like new
+        Symbol() with throw an error.</p>
+    <p>• Symbol function also accepts an argument which is used to describe the symbol.</p>
+    <p> let name = Symbol('Full Name');
+        <br> let details = {};
+        <br> details[name] = 'Prashant Yadav';
+        <br>
+        <br> console.log(details[name]);
+        <br> // "Prashant Yadav"
+        <br>
+        <br> console.log(name);
+        <br> // Symbol(Full Name);
+    </p>
+    <p>• The description is stored internally and is read whenever the Symbol.toString() method is called implicitly or
+        explicitly.</p>
+    <p>• Symbols are always unique. Even if declared with same description.</p>
+    <p> let details = {};
+        <br> let firstName = Symbol('Full Name');
+        <br> details[firstName] = 'Prashant';
+        <br>
+        <br> console.log(details[firstName]);
+        <br> // "Prashant"
+        <br>
+        <br> let secondName = SYmbol('Full Name');
+        <br> details[secondName] = 'Yadav';
+        <br>
+        <br> console.log(details[secondName]);
+        <br> // "Yadav"
+        <br>
+        <br> console.log(firstName == secondName);
+        <br> // false
+    </p>
+    <p>• As we see we have created two different Symbols with same description still they are not same.</p>
+
+    <!-- Different ways to define Symbol in Javascript -->
+    <p><strong>• <u>Different ways to define Symbol in Javascript</u></strong></p>
+    <p> -- We can use Symbol where-ever we use a computed property name.
+
+        <br>
+        <!-- As a dynamic object property -->
+        <br> > <u>As a dynamic object property</u>
+        <br>
+        <br> let firstName = Symbol('First Name');
+        <br> let lastName = Symbol('Last Name');
+        <br> let details = {
+        <br> [firstName] = 'Prashant'
+        <br> [lastName] = 'Yadav'
+        <br> };
+        <br>
+        <br> console.log(details[firstName]);
+        <br> // Prashant
+        <br>
+        <br> console.log(details[lastName]);
+        <br> // Yadav
+        <br>
+        <br>
+        <!-- Using Object.defineProperty() -->
+        > <u>Using Object.defineProperty()</u>
+        <br>
+        <br> let firstName = Symbol('First Name');
+        <br> let lastName = Symbol('Last Name');
+        <br> let name = {};
+        <br>
+        <br> Object.defineProperty(details ,firstName, {
+        <br> value : 'Prashant',
+        <br> writable : false
+        <br> });
+        <br>
+        <br> Object.defineProperty(details ,lastName, {
+        <br> value : 'Yadav',
+        <br> writable : false
+        <br> });
+        <br>
+        <br> console.log(details[firstName]);
+        <br> // Prashant
+        <br>
+        <br> console.log(details[lastName]);
+        <br> // Yadav
+        <br>
+        <br>
+        <!-- Using object.defineProperties() -->
+        > <u>Using object.defineProperties()</u>
+        <br>
+        <br> let firstName = Symbol('First Name');
+        <br> let lastName = Symbol('Last Name');
+        <br> let details = {};
+        <br>
+        <br> Object.defineProperties(details, {
+        <br> [firstName] : {
+        <br> value : 'Prashant',
+        <br> writable : true
+        <br> },
+        <br> [lastName] : {
+        <br> value : 'Yadav',
+        <br> writable : false
+        <br> }
+        <br> });
+        <br>
+        <br> console.log(details[firstName]);
+        <br> // Prashant
+        <br>
+        <br> console.log(details[lastName]);
+        <br> // Yadav
+    </p>
+
+    <!-- Using Symbol globally in javascript -->
+    <p><strong>• <u>Using Symbol globally in javascript</u></strong></p>
+    <p> -- We may sometimes want to use the same symbol with the different parts of our code. It is difficult to keep
+        track of the symbol across large code base.</p>
+    <p> -- In order to make our work easy, ES6 provides us a function called Symbol.for() which stores the Symbol in
+        global registry. It accepts a single parameter description Symbol.or('name') and checks if a Symbol with same
+        description exits or not. It exists then it returns the existing else it will create a new one.</p>
+    <p> let details = {};
+        <br>
+        <br> let firstName = Symbol.for('name');
+        <br> details[firstName] = 'Prashant';
+        <br> console.log(details[firstName]);
+        <br> // 'Prashant'
+        <br>
+        <br> let lastName = Symbol.for('name');
+        <br> details[lastName] = 'Yadav';
+        <br> console.log(details[lastName]);
+        <br> // 'Yadav'
+        <br>
+        <br> console.log(firstName); // Symbol(name)
+        <br> console.log(lastName); // Symbol(name)
+        <br>
+        <br> console.log(firstName === lastName);
+        <br> // true
+    </p>
+
+    <!-- Checking current Symbol being used -->
+    <p><strong>• <u>Checking current Symbol being used</u></strong></p>
+    <p> -- There is an another function Symbol.keyFor(Symbol) which is used to check the current Symbol being used in
+        global registry. It takes the Symbol as input and returns the description of the Symbol.</p>
+    <p> let firstName = Symbol.for('name');
+        <br> let lastName = Symbol.for('name');
+        <br> let middleName = Symbol('abc');
+        <br>
+        <br> console.log(Symbol.keyFor(firstName));
+        <br> // "name"
+        <br>
+        <br> console.log(Symbol.keyFor(lastName));
+        <br> // "name"
+        <br>
+        <br> console.log(Symbol.keyFor(middleName));
+        <br> // undefined
+        <br>
+        <br> As Symbol('abc') is not stored in the global registry. It returns undefined.
+    </p>
+
+    <!-- Retrieving Symbol Properties -->
+    <p><strong>• <u>Retrieving Symbol Properties</u></strong></p>
+    <p> -- We know that we can use Symbol as object property but we cannot retrieve it using existing object methods
+        like Object.keys() Object.getOwnPropertyNames() as they return all enumerable property names.</p>
+    <p> let Office = {
+        <br> [Symbol("Tom")] : "CEO",
+        <br> [Symbol("Mark")] : "CTO",
+        <br> [Symbol("Mark")] : "CIO",
+        <br> }
+        <br>
+        <br> for(person in office) {
+        <br> console.log(person);
+        <br> }
+        <br>
+        <br> // undefined
+    </p>
+    <p> -- As symbol is not enumerable, ES6 provides us a function which we can use to retrieve Symbols.
+        Object.getOwnPropertySymbols() returns an array of own property Symbols.</p>
+    <p> let office = {
+        <br> [Symbol("Tom")] : "CEO",
+        <br> [Symbol("Mark")] : "CTO",
+        <br> [Symbol("Mark")] : "CIO",
+        <br> }
+        <br>
+        <br> const symbols = Object.getOwnPropertySymbols(office);
+        <br> console.log(symbols);
+        <br> /* (3) [Symbol(Tom), Symbol(Mark), Symbol(Mark)]
+        <br> 0: Symbol(Tom)
+        <br> 1: Symbol(Mark)
+        <br> 2: Symbol(Mark)
+        <br> length: 3
+        <br> __proto__: Array(0)
+        <br> */
+    </p>
+    <p> -- We can use this array of own property Symbols along with map to retrieve all the values.</p>
+    <p> let office = {
+        <br> [Symbol("Tom")] : "CEO",
+        <br> [Symbol("Mark")] : "CTO",
+        <br> [Symbol("Mark")] : "CIO",
+        <br> }
+        <br>
+        <br> const symbols = Object.getOwnPropertySymbols(office);
+        <br> const values = symbols.map(symbol => office[symbol]);
+        <br>
+        <br> for (let value in values) {
+        <br> console.log(values[value]);
+        <br> }
+        <br>
+        <br> // CEO
+        <br> // CTO
+        <br> // CIO
+    </p>
+
+    <!-- JavaScript Symbol Methods -->
+    <p><strong>• <u>JavaScript Symbol Methods</u></strong></p>
+    <p> > <u>Symbol.hasInstance</u>
+        <br> -- It is used by instanceOf to check the inheritance of the object.
+    </p>
+    <p> > <u>Symbol.isConcatSpreadable</u>
+        <br> -- Returns a boolean value. It is used to indicate Array.prototype.concat() that it should flatten the
+        collection passed to it.
+    </p>
+    <p> > <u>Symbol.iterator</u>
+        <br> -- Return's an iterator.
+    </p>
+    <p> > <u>Symbol.match</u>
+        <br> -- Used by string.prototype.match() to compare strings.
+    </p>
+    <p> > <u>Symbol.split</u>
+        <br> -- Used by String.prototype.split() to split string in array of characters.
+    </p>
+    <p> > <u>Symbol.toPrimitive</u>
+        <br> -- Returns the primitive value of the object.
+    </p>
+    <p> > <u>Symbol.toStringTag</u>
+        <br> -- A string used by Object.prototype.toString() to create an object description.
+    </p>
+    <p> > <u>Symbol.unscopables</u>
+        <br> -- An object whose properties are the names of object properties that should not be included in a with
+        statement.
+    </p>
+    <hr>
+
+
     <script src="script.js" async defer></script>
 </body>
 
