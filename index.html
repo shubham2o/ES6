@@ -2237,6 +2237,290 @@
     <!-- What are generators? -->
     <p><strong>• <u>What are generators?</u></strong></p>
     <p> -- A generator is a function that returns an iterator. They are indicated by * and uses yield keyword.</p>
+    <p> function * createIterator() {
+        <br> yield * "value";
+        <br> yield 2;
+        <br> yield object = {};
+        <br> }
+    </p>
+    <p> -- The * before createIterator() makes this function a generator. yield keyword specifies what value the
+        function should return when next() method is called.</p>
+    <p> -- The generator function stops the execution after each yield statement. yield can only be used inside the
+        generator functions.</p>
+    <p> function * createIterator() {
+        <br> let friends = ['Pranav', 'Sachin', 'Panam', 'Yogesh', 'Abhilash'];
+        <br> for (let i = 0; i < friends.length; i++) { <br> yield friends[i];
+            <br> }
+            <br> }
+            <br>
+            <br> let iterator = createIterator();
+            <br> console.log(iterator.next());
+            <br> // {value: 'Pranav', done : false}
+            <br>
+            <br> console.log(iterator.next());
+            <br> // {value: 'Sachin', done : false}
+            <br>
+            <br> console.log(iterator.next());
+            <br> // {value: 'Panam', done : false}
+            <br>
+            <br> console.log(iterator.next());
+            <br> // {value: 'Yogesh', done : false}
+    </p>
+    <p> -- Generators are one of the most important features of ES6. As they are just functions so they can be used
+        anywhere.</p>
+
+    <!-- Generator Return Statements -->
+    <p><strong>• <u>Generator Return Statements</u></strong></p>
+    <p> -- As generators are function we can specify return statement both to exit early and specify a return value for
+        the last call to the next() method.</p>
+    <p> function * createIterator() {
+        <br> let friends = ['Pranav', 'Sachin', 'Panam', 'Yogesh', 'Abhilash'];
+        <br> for (let i = 0; i < friends.length; i++) { <br> if (i == 2) {
+            <br> return 'arun';
+            <br> }
+            <br> yield friends[i];
+            <br> }
+            <br> }
+            <br>
+            <br> let iterator = createIterator();
+            <br> console.log(iterator.next());
+            <br> // {value : 'Pranav', done : false}
+            <br>
+            <br> console.log(iterator.next());
+            <br> {value : 'Sachin', done : false}
+            <br>
+            <br> console.log(iterator.next());
+            <br> {value : 'arun', done : false}
+    </p>
+
+    <!-- Passing value to generators -->
+    <p><strong>• <u>Passing value to generators</u></strong></p>
+    <p> -- When an argument is passed to the next() method, that argument becomes the value of the yield statement
+        inside a generator.</p>
+    <p> function * createIterator(){
+        <br> let first = yield 1;
+        <br> let second = yield first + 5;
+        <br> yield second + 6;
+        <br> }
+        <br>
+        <br> let iterator = createIterator();
+        <br>
+        <br> console.log(iterator.next());
+        <br> // "{ value: 1, done: false }"
+        <br>
+        <br> console.log(iterator.next(4));
+        <br> // "{ value: 9, done: false }"
+        <br>
+        <br> console.log(iterator.next(5));
+        <br> // "{ value: 11, done: false }"
+        <br>
+        <br> console.log(iterator.next());
+        <br> // "{ value: undefined, done: true}"
+    </p>
+
+    <!-- Generators Objects -->
+    <p><strong>• <u>Generators Objects</u></strong></p>
+    <p> -- Generators can also be added to the objects.</p>
+    <p> let friends = {
+        <br> createIterator : function * (items) {
+        <br> for (let i = 0; i < items.length; i++) { <br> yield items[i];
+            <br> }
+            <br> },
+            <br>
+            <br> * createIterator2(items) {
+            <br> for (let i = 0; i < items.length; i++) { <br> yield items[i];
+                <br> }
+                <br> }
+                <br> };
+                <br>
+                <br> let iterator = friends.createIterator(['Pranav', 'Sachin', 'Panam', 'Yogesh', 'Abhilash']);
+                <br>
+                <br> console.log(iterator.next());
+                <br> // {value: 'Pranav', done: false}
+                <br>
+                <br> console.log(iterator.next());
+                <br> // {value: 'Sachin', done: false}
+                <br>
+                <br> let iterator2 = friends.createIterator(['goku', 'krillin', 'vegeta']);
+                <br>
+                <br> console.log(iterator2.next());
+                <br> // {value: 'goku', done: false}
+                <br>
+                <br> console.log(iterator2.next());
+                <br> // {value: 'krillin', done: false}
+    </p>
+
+    <!-- Iterable -->
+    <p><strong>• <u>Iterable</u></strong></p>
+    <p> -- An iterable is an object with a symbol.iterator property. It is closely related to iterators. symbol.iterator
+        specifies a function that returns the iterator for the given object. All collection objects (arrays, sets and
+        maps) and strings are iterables in ECMAScript6 and so they have a default iterator specified. It is designed to
+        be used with new for-of.</p>
+
+    <!-- For-of -->
+    <p><strong>• <u>For-of</u></strong></p>
+    <p> -- ES6 has introduced a new loop called for-of which is used to iterate over the values of the object. It can be
+        used on iterators.</p>
+
+    <!-- Default iterator for the array -->
+    <p><strong>• <u>Default iterator for the array</u></strong></p>
+    <p> let friends = ['Pranav', 'Sachin', 'Panam', 'Yogesh', 'Abhilash'];
+        <br> let iterator = friends[Symbol.iterator]();
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : "Pranav", done : false}
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : "Sachin", done : false}
+        <br>
+        <br> console.log(iterator.next());
+        <br> // {value : "Panam", done : false}
+        <br>
+        <br> -- A for-of loop calls next() on an iterable each time the loop executes and stores the value from the
+        result object in a variable. The loop continues this process until the returned object's done property is true.
+    </p>
+
+    <!-- For-of with Array -->
+    <p><strong>• <u>For-of with Array</u></strong></p>
+    <p> let friends = ['Pranav', 'Sachin', 'Panam', 'Yogesh', 'Abhilash']
+        <br> for (let friend of friends) {
+        <br> console.log(firend);
+        <br> }
+        <br> // "Pranav"
+        <br> // "Sachin"
+        <br> // "Panam"
+        <br> // "Yogesh"
+        <br> // "Abhilash"
+    </p>
+
+    <!-- For-of with Objects -->
+    <p><strong>• <u>For-of with Objects</u></strong></p>
+    <p> -- We can also use the for-of on the objects. There are different inbuilt methods which can be used to achieve
+        the same.</p>
+
+    <!-- Built in Iterators -->
+    <p><strong>• <u>Built in Iterators</u></strong></p>
+    <p> -- ES6 has three types of collection objects: arrays, maps, and sets. All three have the following built-in
+        iterators to help you navigate their content :
+        <br>
+        <br> |-- <strong>entries()</strong> - Returns an iterator whose values are a key-value pair.
+        <br> |-- <strong>values()</strong> - Returns an iterator whose values of the collection.
+        <br> |-- <strong>keys()</strong> - Returns an iterator whose values are a keys contained in the collection.
+    </p>
+
+    <!-- For-of with plain objects -->
+    <p><strong>• <u>For-of with plain objects</u></strong></p>
+    <p> let car = {
+        <br> maker : "BMW",
+        <br> color : "red",
+        <br> year : "2010",
+        <br> }
+        <br>
+        <br> for (let prop of Object.keys(car)) {
+        <br> console.log(car[prop]);
+        <br> }
+        <br>
+        <br> // BMW
+        <br> // red color
+        <br> // 2010 year
+    </p>
+
+    <!-- For-of with Maps -->
+    <p><strong>• <u>For-of with Maps</u></strong></p>
+    <p> let data = new Map();
+        <br> data.set("prashant", 1);
+        <br> data.set("pranav", 1);
+        <br> data.set("sachin", 1);
+        <br> data.set("panam", 1);
+        <br>
+        <br> for (let prop of data.entries()) {
+        <br> console.log(prop);
+        <br> }
+        <br>
+        <br> // ["prashant", 1]
+        <br> // ["pranav", 1]
+        <br> // ["sachin", 1]
+        <br> // ["panam", 1]
+    </p>
+
+    <!-- Destructuring the data -->
+    <p><strong>• <u>Destructuring the data</u></strong></p>
+    <p> let data = new Map();
+        <br> data.set("prashant", 1);
+        <br> data.set("pranav", 2);
+        <br> data.set("sachin", 3);
+        <br> data.set("panam", 4);
+        <br>
+        <br> for (let [key, value] of data.entries()) {
+        <br> console.log(`${key} at ${value}`);
+        <br> }
+        <br>
+        <br> // prashant at 1
+        <br> // pranav at 2
+        <br> // sachin at 3
+        <br> // panam at 4
+    </p>
+
+    <!-- For-of with Set -->
+    <p><strong>• <u>For-of with Set</u></strong></p>
+    <p> let data = new Set();
+        <br> data.add('prashant');
+        <br> data.add('pranav');
+        <br> data.add('sachin');
+        <br> data.add('panam');
+        <br>
+        <br> for (let prop of data.values()){
+        <br> console.log(prop);
+        <br> }
+        <br>
+        <br> // prashant
+        <br> // pranav
+        <br> // sachin
+        <br> // panam
+    </p>
+
+    <!-- For-of with String -->
+    <p><strong>• <u>For-of with String</u></strong></p>
+    <p> let data = "prashant";
+        <br>
+        <br> for(let char of data){
+        <br> console.log( char);
+        <br> }
+        <br>
+        <br> /*
+        <br> p
+        <br> r
+        <br> a
+        <br> s
+        <br> h
+        <br> a
+        <br> n
+        <br> t
+        <br> */
+    </p>
+
+    <!-- For-of with generators -->
+    <p><strong>• <u>For-of with generators</u></strong></p>
+    <p> -- Iterators created by generators are also iterables, as generators assign the symbol.iterator property by
+        default.</p>
+    <p> let friends = {
+        <br> * createIterator(items) {
+        <br> for (let i = 0; i < items.length; i++) { <br> yield items[i];
+            <br> }
+            <br> }
+            <br> };
+            <br>
+            <br> let iterator = friends.createIterator(["Pranav", "Sachin", "Panam", "Yogesh", "Abhilash"]);
+            <br> for (let friend of iterator) {
+            <br> console.log(friend);
+            <br> }
+            <br>
+            <br> // Pranav
+            <br> // Sachin
+            <br> // Panam
+            <br> // Yogesh
+            <br> // Abhilash
+    </p>
     <hr>
 
 
