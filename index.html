@@ -2524,6 +2524,377 @@
     <hr>
 
 
+    <!-- JavaScript Promise -->
+    <h2>JavaScript Promise</h2>
+    <p>• JavaScript is an asynchronous single-threaded programming language and to handle the asynchronous user
+        interaction like click and keypress it used events.</p>
+    <p> let button = document.getElementById("prashant");
+        <br> button.onclick = function(event) {
+        <br> console.log("Clicked");
+        <br> }
+    </p>
+    <p>• Nodejs further advanced asynchronous programming by implementing the concept of callbacks. Callback pattern
+        works the same as the event but it can pass another function as an argument which nees to be executed.</p>
+    <p> readFile("example.txt", function(err, contents) {
+        <br> if (err) {
+        <br> throw err;
+        <br> }
+        <br> console.log(contents);
+        <br> });
+        <br> console.log("Hi!");
+    </p>
+    <p>• This example shows how callbacks work in the Nodejs. The readFile() reads from a file on disk and then execute
+        the callback (the second argument) when completed. It pass two arguments to the callback function err and
+        contents. We can now use this argument to process further.</p>
+    <p>• But handling nested callback function gets tedious as we need to track multiple callbacks and cleanup
+        operations. It becomes callback hell when we nest multiple callbacks.</p>
+    <p> method1(function(err, result) {
+        <br>
+        <br> if (err) {
+        <br> throw err;
+        <br> }
+        <br>
+        <br> method2(function(err, result) {
+        <br>
+        <br> if (err) {
+        <br> throw err;
+        <br> }
+        <br>
+        <br> method3(function(err, result) {
+        <br>
+        <br> if (err) {
+        <br> throw err;
+        <br> }
+        <br>
+        <br> method4(function(err, result) {
+        <br>
+        <br> if (err) {
+        <br> throw err;
+        <br> }
+        <br>
+        <br> method5(result);
+        <br> });
+        <br>
+        <br> });
+        <br>
+        <br> });
+        <br>
+        <br> });
+    </p>
+    <p>• Promises which are introduces in ES6 help us to handle such situations greatly. But exactly what is promise in
+        javascript?</p>
+
+    <!-- What is promise? -->
+    <p><strong>• <u>What is promise</u>?</strong></p>
+    <p> -- According to MDN :~ A promise is an object representing the eventual completion or failure of an asynchronous
+        operation.</p>
+    <p> -- Promise represent whether asynchronous code completed or failed and eventually returning its resulting value.
+    </p>
+    <p> let promise = readFile("example.txt");
+        <br>
+        <br> promise.then(function (contents) {
+        <br> // fulfillment
+        <br> console.log(contents);
+        <br> }, function(err) {
+        <br> // rejection
+        <br> console.log(err.message);
+        <br> });
+        <br>
+        <br> promise.then(function (contents) {
+        <br> // fulfillment
+        <br> console.log(contents);
+        <br> });
+        <br>
+        <br> promise.then(null, function (err) {
+        <br> // rejection
+        <br> console.log(err.message);
+        <br> });
+    </p>
+
+    <!-- Javascript promise lifecycle -->
+    <p><strong>• <u>Javascript promise lifecycle</u></strong></p>
+    <p> -- Each promise has a short lifecycle which represents the different state of execution of the asynchronous
+        code.</p>
+    <p>||-- <u> Pending </u>: Indicates that the asynchronous operation hasn't completed yet. A pending promise is
+        considered unsettled.</p>
+    <p>||-- <u> Resolved/Fulfilled </u>: Indicates that the asynchronous operation has completed successfully.</p>
+    <p>||-- <u> Rejected</u>: Indicates that the asynchronous operation has failed due to error or some other cause.</p>
+    <p> -- A promise is considered to be settled when it is either in Ressolved or Rejected state.</p>
+    <p> -- We can use then() method to track the current state of the promise lifecycle. It gets called whenever promise
+        change state. </p>
+    <p> -- The then() method takes two arguments. First argument is called when the promise is fulfilled and second
+        argument is called when it is rejected. Both of the arguments are optional.</p>
+
+    <!-- Pending state -->
+    <p><strong>• <u>Pending state</u></strong></p>
+    <p> -- As soon as the promise is returned it is in the pending state.</p>
+    <p> let promise = readFile("example.txt");</p>
+
+    <!-- Resolved/Fulfilled state -->
+    <p><strong>• <u>Resolved/Fulfilled state</u></strong></p>
+    <p> -- When the asynchronous operation is completed successfully(fulfilled) without errors then the first argument
+        of the then() is called.</p>
+    <p> promise.then((content) => {
+        <br> // fulfilled
+        <br> console.log(content);
+        <br> });
+    </p>
+    <p> -- We can pass the second argument as well which handles the rejection.</p>
+    <p> promise.then((content) => {
+        <br> // fulfilled
+        <br> console.log(content);
+        <br> }, (error) => {
+        <br> // rejected
+        <br> console.log(error);
+        <br> });
+    </p>
+
+    <!-- Rejected state -->
+    <p><strong>• <u>Rejected state</u></strong></p>
+    <p> -- When the code fails due to error or some other case then this state is called.</p>
+    <p> promise.then(null, (error) => {
+        <br> // rejected
+        <br> console.log(err);
+        <br> });
+    </p>
+    <p> -- As the first argument always gets called when the operation is fulfilled we can pass null to omit it.</p>
+    <p> -- There is another catch() method which we can use along with then() to handle errors. It works same as then()
+        method only for rejected state.</p>
+    <p> // Using then
+        <br> promise.then(null, (error) => {
+        <br> // rejected
+        <br> console.log(err);
+        <br> });
+        <br>
+        <br> // Using a catch
+        <br> promise.catch((error) => {
+        <br> // rejected
+        <br> console.log(err);
+        <br> });
+    </p>
+    <p> -- Now we don't need to pass the null as the first argument, catch() will get called only for the rejected
+        state.</p>
+
+    <!-- Creating custom promise -->
+    <p><strong>• <u>Creating custom promise</u></strong></p>
+
+    <!-- Unsettled promise -->
+    <p>||-- <u> Unsettled promise</u>
+        <br>
+        <br> -- We can create our custom promise using __Promise__ constructor. It takes a function called executor as
+        argument which initializes the promise.
+        <br> -- The executor takes two arguments resolve() and reject(). When the executor is finished successfully
+        then resolve() will be called. If there is any error then reject() will be called.
+    </p>
+    <p> const myPromise = new Promise((resolve, reject) => {
+        <br> // your code goes here
+        <br> });
+    </p>
+    <p> -- We can now use this promise to handle the execution of asynchronous code.</p>
+    <p> let fs = require(".fs");
+        <br>
+        <br> const myPromise = new Promise((resolve, reject) => {
+        <br> // your code goes here
+        <br> fs.readFile(filename, { encoding : "utf8" }, function(err, contents) {
+        <br>
+        <br> // check for errors
+        <br> if (err) {
+        <br> reject(err);
+        <br> return;
+        <br> }
+        <br>
+        <br> // the read succeeded
+        <br> resolve(contents);
+        <br>
+        <br> });
+        <br>
+        <br> });
+        <br>
+        <br> let promise = myPromise("example.txt");
+        <br>
+        <br> // listen for both fulfillment and rejection
+        <br> promise.then((contents) => {
+        <br> // fulfillment
+        <br> console.log(contents);
+        <br> }).catch((err) => {
+        <br> // rejection
+        <br> console.log(err);
+        <br> });
+    </p>
+
+    <!-- Handling errors with promise -->
+    <p>||-- <u> Handling errors with promise</u>
+        <br>
+        <br> -- The rejection handler handles the error that is thrown inside the executor function.
+    </p>
+    <p> let promise = new Promise(function(resolve, reject) {
+        <br> throw new Error("Explosion!");
+        <br> });
+        <br>
+        <br> promise.catch(function(error) {
+        <br> console.log(error.message); // "Explosion!"
+        <br> });
+    </p>
+    <p> -- We can also explicitly throw the error using try catch block.</p>
+    <p> let promise = new Promise(function(resolve, reject) {
+        <br> try {
+        <br> throw new Error("Explosion!");
+        <br> } catch (ex) {
+        <br> reject (ex);
+        <br> }
+        <br> });
+        <br>
+        <br> promise.catch(function(error) {
+        <br> console.log(error.message); // "Explosion!"
+        <br> });
+    </p>
+
+    <!-- Settled promise -->
+    <p>||-- <u> Settled promise</u>
+        <br>
+        <br> -- If you want a promise to represent just a single known value, then there are two methods that create
+        settled promises given a specific value.
+        <br>
+        <br> >> Using promise.resolve()
+        <br> The promise.resolve() method accepts a single argument and returns a promise in the fulfilled state.
+        <br>
+        <br> let promise = Promise.resolve(42);
+        <br>
+        <br> promise.then(function(value) {
+        <br> console.log(value); // 42
+        <br> });
+        <br>
+        <br> >> Using promise.reject()
+        <br> It works same as the Promise.resolve() but it returns the promise in the rejected state.
+        <br>
+        <br> let promise = Promise.reject(42);
+        <br>
+        <br> promise.catch(function(value) {
+        <br> console.log(value); // 42
+        <br> });
+    </p>
+
+    <!-- Chaining promise -->
+    <p>||-- <u> Chaining promise</u>
+        <br>
+        <br> -- We can chain promises one after the other, using what was returned from the previous one as the base for
+        the subsequent one, whether the promise resolved or got rejected.
+    </p>
+    <p> const myPromise = new Promise((resolve, reject) => {
+        <br> resolve();
+        <br> });
+        <br>
+        <br> myPromise.then(data => {
+        <br> // take the data returned and call a function on it
+        <br> return doSomething(data);
+        <br> })
+        <br> .then(data => {
+        <br> // log the data that we got from the previous promise
+        <br> console.log(data);
+        <br> })
+        <br> .catch(err => {
+        <br> console.error(err);
+        <br> });
+    </p>
+    <p> -- We can return the value in the promise chain and the returned value will be handles by the following chaining
+        function.</p>
+    <p> const myPromise = new Promise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> myPromise.then((value) => {
+        <br> console.log(value); // "42"
+        <br> return value + 1 ;
+        <br> }).then((value) => {
+        <br> console.log(value); // "43"
+        <br> return value + 5;
+        <br> }).then((value) => {
+        <br> console.log(value); // "48"
+        <br> }).catch((err) => {
+        <br> console.log(err);
+        })
+    </p>
+    <p> -- We can do the same thing with the rejection handler as well as it will also return value.</p>
+    <p> const myPromise = new Promise((resolve) {
+        <br> reject(42);
+        <br> });
+        <br>
+        <br> myPromise.catch((value) => {
+        <br> // first fulfillment handler
+        <br> console.log(value); "42"
+        <br> return value + 1;
+        <br> }).then((value) => {
+        <br> // second fulfillment handler
+        <br> console.log(value); "43"
+        <br> });
+    </p>
+
+    <!-- Returning Promises in Promise Chains -->
+    <p>||-- <u>Returning Promises in Promise Chains</u>
+        <br>
+        <br> -- We can also return Promise from the another promise and then handle this based on its current state.
+    </p>
+    <p> let p1 = new Promise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> let p2 = new Promise(function(resolve, reject) {
+        <br> resolve(43);
+        <br> });
+        <br>
+        <br> p1.then(function(value) {
+        <br> // first fulfillment handler
+        <br> console.log(value); // 42
+        <br> return p2;
+        <br> }).then(function(value) {
+        <br> // second fulfillment handler
+        <br> console.log(value); // 43
+        <br> });
+    </p>
+    <p> -- As we can see the promise p1 is fulfilled and prints 42 then we returned the p2 from it which is further
+        handled and prints 43.</p>
+    <p> -- The seconds then() is listening to the returned promise p2. This is how it is executed.</p>
+    <p> let p1 = new Promise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> let p2 = new Promise(function(resolve, reject) {
+        <br> resolve(43);
+        <br> });
+        <br>
+        <br> let p3 = p1.then(function(value) {
+        <br> // first fulfillment handler
+        <br> console.log(value); // 42
+        <br> return p2;
+        <br> });
+        <br>
+        <br> p3.then(function(value) {
+        <br> // second fulfillment handler
+        <br> console.log(value); // 43
+        <br> });
+    </p>
+    <p> -- It simply attaches the then() handler to the returned promise.</p>
+    <p> -- We can also create new promise and return it.</p>
+    <p> let p1 = new Promise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> p1.then(function(value) {
+        <br> console.log(value); // 42
+        <br>
+        <br> // create a new promise
+        <br> let p2 = new Promise(function(resolve, reject) {
+        <br> resolve(43);
+        <br> });
+        <br>
+        <br> return p2
+        <br> }).then(function(value) {
+        <br> console.log(value); // 43
+        <br> });
+    </p>
+    <hr>
+
+
     <script src="script.js" async defer></script>
 </body>
 
