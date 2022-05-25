@@ -2892,6 +2892,114 @@
         <br> console.log(value); // 43
         <br> });
     </p>
+    <p>||-- <u>Handling multiple promise</u>
+        <br>
+        <br> -- We can handle multiple promises together with Promise.all() and Promise.race() which are provided by
+        ES6.
+        <br>
+        <br>=== <u>Promise.all()</u>
+        <br>
+        <br> + The Promise.all() method takes a single argument (an array of promises) and returns a promise which will
+        be resolved when all the promises passed to it are resolved. The returned promise is fulfilled when every
+        promise in the iterable is fulfilled.
+        <br>
+        <br> let p1 = new Promise(function (resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> let p2 = new Promise(function (resolve, reject) {
+        <br> resolve(43);
+        <br> });
+        <br>
+        <br> let p3 = new Promise(function (resolve, reject) {
+        <br> resolve(44);
+        <br> });
+        <br>
+        <br> let p4 = Promise.all([p1, p2, p3]);
+        <br>
+        <br> p4.then(function(value) {
+        <br> console.log(Array.isArray(value)); // true
+        <br> console.log(value[0]); // 42
+        <br> console.log(value[1]); // 43
+        <br> console.log(value[2]); // 44
+        <br> });
+    </p>
+    <p>+ Each promises passes to the Promise.all() is resolved with a number. It will return the array of fulfilled
+        values of ach promises when all the promises are fulfilled. The values are returned in the order of the promises
+        passed.</p>
+    <p>+ If any promise passed to Promise.all() is rejected, the returned promise is immediately rejected without
+        waiting for the other promises to complete.</p>
+    <p> let p1 = new Promise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> let p2 = new Promise(function(resolve, reject) {
+        <br> reject(43);
+        <br> });
+        <br>
+        <br>let p3 = new Promise(function(resolve, reject) {
+        <br> resolve(44);
+        <br> });
+        <br>
+        <br> let p4 = Promise.all([p1, p2, p3]);
+        <br>
+        <br> p4.catch(function(value) {
+        <br> console.log(Array.isArray(value)); // false
+        <br> console.log(value); // 43
+        <br> });
+    </p>
+    <p>=== <u>Promise.race()</u></p>
+    <p>+ The promise.race() method takes a single argument(an array of promises) and returns a promise which will be
+        resolved when any of the promises passed to it are resolved. Instead of waiting for all promises to be fulfilled
+        like the Promise.all() method, the Promise.race() method returns an appropriate promise as soon as any promise
+        in the array is fulfilled.</p>
+    <p> let p1 = Promise.resolve(42);
+        <br>
+        <br> let p2 = new Promise(function(resolve, reject) {
+        <br> resolve(43);
+        <br> });
+        <br>
+        <br> let p3 = new Promise(function(resolve, reject) {
+        <br> resolve(44);
+        <br> });
+        <br>
+        <br> let p4 = Promise.race([p1, p2, p3]);
+        <br>
+        <br> p4.then(function(value) {
+        <br> console.log(value); // 42
+        <br> });
+        <br>
+        <br> + As p1 is the settled promise it is returned as soon as it resolved. Other promises p2, p3 are unsettled
+        promises.
+    </p>
+    <p>||-- <u>Inheritance from promises</u>
+        <br>
+        <br> -- We can use promises as the base for the derived class. This will extend its capabilities.
+        <br>
+        <br> class MyPromise extends Promise {
+        <br>
+        <br> // use default constructor
+        <br>
+        <br> success(resolve, reject) {
+        <br> return this.then(resolve, reject);
+        <br> }
+        <br>
+        <br> failure(reject) {
+        <br> return this.catch(reject);
+        <br> }
+        <br> }
+        <br>
+        <br> let promise = new MyPromise(function(resolve, reject) {
+        <br> resolve(42);
+        <br> });
+        <br>
+        <br> promise.success(function(value) {
+        <br> console.log(value); // 42
+        <br> }).failure(function(value) {
+        <br> console.log(value);
+        <br> });
+    </p>
+    <p> -- Here our derived MyPromise class has our custom methods success and failure which we can use.</p>
     <hr>
 
 
